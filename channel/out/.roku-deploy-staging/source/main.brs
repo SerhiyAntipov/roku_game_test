@@ -13,6 +13,7 @@ sub Main()
 
 	game.defineObject("pause_handler", obj_pause_handler)
 	game.defineObject("score_handler", obj_score_handler)
+	game.defineObject("wolf_position", obj_wolf_position)
 	
 	game.changeRoom("room_start")
 	game.Play()

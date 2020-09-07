@@ -3,6 +3,7 @@ function room_game(object)
 	object.onCreate = function(args)
 		m.game.createInstance("pause_handler")
 		m.game.createInstance("score_handler")
+		m.game.createInstance("wolf_position")
 		m.game_started = true
 	end function
 
@@ -11,7 +12,7 @@ function room_game(object)
 
 	' ####  canvas
 	object.onDrawBegin = function(canvas)
-		game_field = canvas.DrawRect(240, 160, 800, 400, &hb007127FF)
+		' game_field = canvas.DrawRect(240, 160, 800, 400, &hb007127FF)
 	end function
 	
 	
