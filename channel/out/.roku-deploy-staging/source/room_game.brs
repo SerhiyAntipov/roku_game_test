@@ -11,15 +11,15 @@ function room_game(object)
 
 	' ####  canvas
 	object.onDrawBegin = function(canvas)
-		canvas.DrawRect(240, 60, 800, 600, &hbbbbbbFF)
+		game_field = canvas.DrawRect(240, 160, 800, 400, &hb007127FF)
 	end function
-
+	
 	
 	' ####  button <- 
 	object.onButton = function(button)
 		if button = 0 then
-			m.game.changeRoom("room_start")
-			m.game_started = false
+			' m.game.changeRoom("room_start")	
+			m.game.End()
 		end if
 	end function
 
