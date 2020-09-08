@@ -17,8 +17,8 @@ function obj_score_handler(object)
 
     object.onDrawEnd = function(canvas as object)
         font = m.game.getFont("default")
-        DrawText(canvas, "score" + "  " + m.game.scores.eggs.ToStr(), 1280 - 100, 100, font, "center")
-        DrawText(canvas, "lose" + "  " + m.game.scores.lose.ToStr(), 1280 - 100, 200, font, "center")
+        DrawText(canvas, "score" + "  " + m.game.scores.eggs.ToStr(), 1280 - 100, 100, font, "center", &hec4016FF)
+        DrawText(canvas, "lose" + "  " + m.game.scores.lose.ToStr(), 1280 - 100, 200, font, "center", &hec4016FF)
     end function
 
 end function

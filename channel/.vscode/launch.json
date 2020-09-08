@@ -20,7 +20,8 @@
                 "components/**/*.*",
                 "images/**/*.*",
                 "sprites/**/*.*",
-                "sounds/**/*.*"
+                "sounds/**/*.*",
+                "fonts/**/*.*"
             ]
         }
     ]

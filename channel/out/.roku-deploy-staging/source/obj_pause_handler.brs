@@ -33,9 +33,9 @@ function obj_pause_handler(object)
 	
 	object.onDrawBegin = function(canvas as object)
 		if m.game.isPaused() then
-			DrawText(canvas, "Paused", canvas.GetWidth() / 2, 100, m.game.getFont("default"), "center")
+			DrawText(canvas, "Paused", canvas.GetWidth() / 2, 100, m.game.getFont("default"), "center", &hec4016FF)
 		else if not  m.game.isPaused() then
-			DrawText(canvas, "Play", canvas.GetWidth() / 2, 100, m.game.getFont("default"), "center")
+			DrawText(canvas, "Play", canvas.GetWidth() / 2, 100, m.game.getFont("default"), "center", &hec4016FF)
 		end if
 	end function
 

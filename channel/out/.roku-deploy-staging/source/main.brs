@@ -18,6 +18,10 @@ sub Main()
 	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
 	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
 	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
+
+	' ### load font 
+	game.loadFont("font", "brush", 24, false, false)
+	game.loadFont("font_HappyMonkey", "HappyMonkey", 24, false, false)
 	
 	game.defineRoom("room_game", room_game)
 	game.defineRoom("room_start", room_start)

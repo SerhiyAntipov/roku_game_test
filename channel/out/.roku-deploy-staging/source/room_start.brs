@@ -26,13 +26,17 @@ function room_start(object)
 	' ####  button OK
 	' draw lowest layer in game  (below any static sprites)
 	object.onDrawBegin = function(canvas)
-		' canvas.DrawRect(240, 160, 800, 400, &hbd4223FF)
 	end function
 
 	' draw top layer in game  (above any static sprites)
 	object.onDrawEnd = function(canvas)
 		if m.game_started = false then
-			DrawText(canvas, "Press OK to Play", canvas.GetWidth() / 2, canvas.GetHeight() - 50, m.game.getFont("default"), "center")
+
+			'### get fonts 
+			' font = m.game.getFont("font")
+			' DrawText(canvas, "Press OK to Play", 100, 25, font, "center", &h161616FF)
+
+			DrawText(canvas, "Press OK to Play", canvas.GetWidth() / 2, canvas.GetHeight() - 50, m.game.getFont("default"), "center", &hec4016FF)
 		end if
 	end function
 
