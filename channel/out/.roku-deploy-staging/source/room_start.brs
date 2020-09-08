@@ -26,7 +26,7 @@ function room_start(object)
 	' ####  button OK
 	' draw lowest layer in game  (below any static sprites)
 	object.onDrawBegin = function(canvas)
-		canvas.DrawRect(240, 160, 800, 400, &hbd4223FF)
+		' canvas.DrawRect(240, 160, 800, 400, &hbd4223FF)
 	end function
 
 	' draw top layer in game  (above any static sprites)

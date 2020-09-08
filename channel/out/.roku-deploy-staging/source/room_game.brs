@@ -5,15 +5,21 @@ function room_game(object)
 		m.game.createInstance("score_handler")
 		m.game.createInstance("wolf_position")
 		m.game_started = true
+
+		' game_bg = m.game.getBitmap("game_bg")
+		' width = game_bg.GetWidth()
+		' height = game_bg.GetHeight()
+		' region = CreateObject("roRegion", game_bg, 0, 0, width, height)
+		' m.addImage("game_bg", region,{ offset_x:(1280-width)/2, offset_y:(720-height)/2})
 	end function
 
 	object.onUpdate = function(dt)	
 		
 	end function
 
-	' ####  canvas
+	
 	object.onDrawBegin = function(canvas)
-		' game_field = canvas.DrawRect(240, 160, 800, 400, &hb007127FF)
+		
 	end function
 	
 	
