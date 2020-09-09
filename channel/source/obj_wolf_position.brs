@@ -18,6 +18,7 @@ function obj_wolf_position(object)
     end function
 
     object.onUpdate = function(dt)
+        
     end function
   
     object.onButton = function(code as integer)
@@ -63,7 +64,7 @@ function obj_wolf_position(object)
                 m.addImage("basket_left_top_image", region,{ offset_x:(1280-width)/2 - 125, offset_y:(720-height)/2 + 20})
                 'text + rect
                 DrawText(canvas, "wolf up", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("default"), "center")
-                backet = canvas.DrawRect(400, 350, 50, 50, &hb007127FF)
+                basket = canvas.DrawRect(400, 350, 50, 50, &hb007127FF)
 
             ' ########### wolf left + left bottom basket     
             elseif m.wolf_position.position_down = true then
@@ -75,7 +76,7 @@ function obj_wolf_position(object)
                 m.addImage("basket_left_bottom_image", region,{ offset_x:(1280-width)/2 - 125, offset_y:(720-height)/2 + 98})
                  'text + rect
                 DrawText(canvas, "wolf down", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("default"), "center")
-                backet = canvas.DrawRect(400, 450, 50, 50, &hb007127FF)
+                basket = canvas.DrawRect(400, 450, 50, 50, &hb007127FF)
             
             endif
 
@@ -102,7 +103,7 @@ function obj_wolf_position(object)
                 m.addImage("basket_right_top_image", region,{ offset_x:(1280-width)/2 + 130, offset_y:(720-height)/2 + 30})
                 'text + rect
                 DrawText(canvas, "wolf up", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("default"), "center")
-                backet = canvas.DrawRect(830, 350, 50, 50, &hb007127FF)
+                basket = canvas.DrawRect(830, 350, 50, 50, &hb007127FF)
 
             ' ########### wolf right + right bottom basket 
             elseif m.wolf_position.position_down = true then
@@ -114,7 +115,7 @@ function obj_wolf_position(object)
                 m.addImage("basket_right_bottom_image", region,{ offset_x:(1280-width)/2 + 125, offset_y:(720-height)/2 + 105})
                 ' text + rect
                 DrawText(canvas, "wolf down", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("default"), "center")
-                backet = canvas.DrawRect(830, 450, 50, 50, &hb007127FF)
+                basket = canvas.DrawRect(830, 450, 50, 50, &hb007127FF)
             end if
         end if
     end function

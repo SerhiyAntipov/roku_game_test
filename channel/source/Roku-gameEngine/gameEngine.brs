@@ -13,7 +13,6 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 			limit_frame_rate: 0
 		}
 		canvas_is_screen: false
-		background_color: &h000000FF
 		running: true
 		paused: false
 		sorted_instances: []
@@ -117,20 +116,12 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 
 	' Set up the screen
 	UIResolution = game.device.getUIResolution()
-	SupportedResolutions = game.device.GetSupportedGraphicsResolutions()
-	FHD_Supported = false
-	for i = 0 to SupportedResolutions.Count() - 1
-		if SupportedResolutions[i].name = "FHD"
-			FHD_Supported = true
-		end if
-	end for
-
 	if UIResolution.name = "SD"
 		game.screen = CreateObject("roScreen", true, 854, 626)
 	else
 		if canvas_width <= 854
 			game.screen = CreateObject("roScreen", true, 854, 480)
-		else if canvas_width <= 1280 or not FHD_Supported
+		else if canvas_width <= 1280
 			game.screen = CreateObject("roScreen", true, 1280, 720)
 		else
 			game.screen = CreateObject("roScreen", true, 1920, 1080)
@@ -175,8 +166,11 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 	' ################################################################ Play() function - Begin #####################################################################################################
 	game.Play = function() as void
 
-		audio_guide_suppression_roURLTransfer = CreateObject("roURLTransfer")
-		audio_guide_suppression_roURLTransfer.SetUrl("http://localhost:8060/keydown/Backspace")
+		' audio_guide_suppression_roURLTransfer = CreateObject("roURLTransfer")
+		' audio_guide_suppression_roURLTransfer.SetUrl("http://localhost:8060/keydown/Backspace")
+		'TODO Nik
+
+
 		audio_guide_suppression_ticker = 0
 
 		m.running = true
@@ -372,11 +366,6 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 
 			end for
 
-			' ----------------------Clear the screen before drawing instances-------------------------
-			if m.background_color <> invalid
-				m.canvas.bitmap.Clear(m.background_color)
-			end if
-
 			' ----------------------Then draw all of the instances and call onDrawBegin() and onDrawEnd()-------------------------
 			m.sorted_instances.SortBy("depth")
 			for i = m.sorted_instances.Count()-1 to 0 step -1
@@ -395,6 +384,19 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 				end_of_draw_loop:
 			end for
 
+			' ------------------Destroy the UrlTransfer object if it has returned an event------------------
+			if type(url_msg) = "roUrlEvent"
+				url_transfer_id_string = url_msg.GetSourceIdentity().ToStr()
+				if m.urltransfers.DoesExist(url_transfer_id_string) then
+					m.urltransfers.Delete(url_transfer_id_string)
+				end if
+			end if
+
+			' -------------------Draw everything to the screen----------------------------
+			if not m.canvas_is_screen
+				m.screen.DrawScaledObject(m.canvas.offset_x, m.canvas.offset_y, m.canvas.scale_x, m.canvas.scale_y, m.canvas.bitmap)
+			end if
+
 			' Draw Debug Related Items
 			if m.debugging.draw_colliders
 				for i = m.sorted_instances.Count()-1 to 0 step -1
@@ -403,11 +405,6 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 						m.drawColliders(instance)
 					end if
 				end for
-			end if
-
-			' -------------------Draw everything to the screen----------------------------
-			if not m.canvas_is_screen
-				m.screen.DrawScaledObject(m.canvas.offset_x, m.canvas.offset_y, m.canvas.scale_x, m.canvas.scale_y, m.canvas.bitmap)
 			end if
 
 			if m.debugging.draw_safe_zones
@@ -420,14 +417,6 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 				while 1000 / m.dtTimer.TotalMilliseconds() > m.debugging.limit_frame_rate
 					sleep(1)
 				end while
-			end if
-
-			' ------------------Destroy the UrlTransfer object if it has returned an event------------------
-			if type(url_msg) = "roUrlEvent"
-				url_transfer_id_string = url_msg.GetSourceIdentity().ToStr()
-				if m.urltransfers.DoesExist(url_transfer_id_string) then
-					m.urltransfers.Delete(url_transfer_id_string)
-				end if
 			end if
 
 		end while
@@ -678,6 +667,7 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 				regions: regions
 				animation_speed: 0 ' The time in milliseconds for a single cycle through the animation to play.
 				animation_tween: "LinearTween"
+				loopAnimation: true
 				Animate: invalid ' The method that handles animation
 				onResume: invalid ' This is called when the game is resumed, paused_time as integer is passed in
 
@@ -715,9 +705,13 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 					current_time -= m.animation_speed
 					m.animation_timer.RemoveTime(m.animation_speed)
 				end if
-				m.index = m._tweens_reference[m.animation_tween](0, frame_count, current_time, m.animation_speed)
+				m.index = int(m._tweens_reference[m.animation_tween](0, frame_count, current_time, m.animation_speed))
 				if m.index > frame_count - 1
-					m.index = frame_count - 1
+					if m.loopAnimation then
+						m.index = 0
+					else
+						m.index = frame_count - 1
+					end if
 				else if m.index < 0
 					m.index = 0
 				end if
@@ -930,11 +924,7 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 	end function
 	' ############### isPaused() function - End ###############
 
-	' ############### setBackgroundColor() function - Begin ###############
-	game.setBackgroundColor = function(color as dynamic) as void
-		m.background_color = color
-	end function
-	' ############### setBackgroundColor() function - Begin ###############
+
 
 	' ############### getDeltaTime() function - Begin ###############
 	game.getDeltaTime = function() as float
@@ -1370,7 +1360,7 @@ function new_game(canvas_width, canvas_height, canvas_as_screen_if_possible = fa
 
 	' ############### musicPlay() function - Begin ###############
 	game.musicPlay = function(path as string, loop = false as boolean) as boolean
-		if m.filesystem.Exists(path) then
+		if m.filesystem.Exists(path) OR Left(path,4) = "http" then
 			m.audioplayer.stop()
 			m.audioplayer.ClearContent()
 			song = {}

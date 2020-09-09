@@ -120,6 +120,22 @@ function CreateObject_GameTimeSpan() as object
 		m.total_milliseconds_modifier -= milliseconds
 	end function
 
+	timer.GetFormattedTime = function() as string
+		remaining = m.TotalSeconds()
+		hours = Int(remaining / 3600).ToStr()
+		remaining = remaining Mod 3600
+		minutes = Int(remaining / 60).ToStr()
+		remaining = remaining Mod 60
+		seconds = remaining.ToStr()
+
+		If hours <> "0" Then
+			Return PadLeft(hours, "0", 2) + ":" + PadLeft(minutes, "0", 2) + ":" + PadLeft(seconds, "0", 2)
+		Else
+			Return PadLeft(minutes, "0", 2) + ":" + PadLeft(seconds, "0", 2)
+		End If
+		return time_str
+	end function
+
 	return timer
 end function
 
@@ -144,3 +160,10 @@ function TexturePacker_GetRegions(atlas as dynamic, bitmap as object) as object
 
 	return regions
 end function
+
+Function PadLeft(value As String, padChar As String, totalLength As Integer) As String
+    While value.Len() < totalLength
+        value = padChar + value
+    End While
+    Return value
+End Function
