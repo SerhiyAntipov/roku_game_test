@@ -126,6 +126,7 @@ function obj_wolf_position(object)
                 'print text
                 DrawText(canvas, "wolf down", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("font_WORKSHOP_Brush"), "center", &hec4016FF)
             endif
+        
         '###
         '### wolf right position
         elseif m.wolf_position.position_right = true then           

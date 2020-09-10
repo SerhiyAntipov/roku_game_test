@@ -1,11 +1,12 @@
 function room_game(object)
 
 	object.onCreate = function(args)
+		m.game.createInstance("clock")
+		m.game.createInstance("eggs_position")
 		m.game.createInstance("pause_handler")
 		m.game.createInstance("score_handler")
 		m.game.createInstance("wolf_position")
-		m.game.createInstance("eggs_position")
-		m.game.createInstance("clock")
+		
 
 		m.game_started = true
 	end function
