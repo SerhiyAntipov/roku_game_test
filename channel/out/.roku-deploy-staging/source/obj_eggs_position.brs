@@ -12,8 +12,17 @@ function obj_eggs_position(object)
 
         ' ### Function add random egg 
         m.addRandomEgg = function (object)
-            m.game.random_number = RND(3)
+            m.game.random_number = RND(4)
+            m.game.random_number = m.game.random_number-1
 
+            print m.game.random_number
+            print "----------------"
+
+            for i = 0 to m.game.eggs_position_array.slide_left_top.Count()-1 step +1
+                print m.game.eggs_position_array.slide_left_top[i]
+            end for
+
+            print "----------------"
             ' random number  = slide position
             if m.game.random_number = 0 then
                 m.game.random_slide = "slide_left_top"
@@ -45,7 +54,7 @@ function obj_eggs_position(object)
         m.addRandomEgg(object)
         m.addRandomEgg(object)
         m.addRandomEgg(object)
-        m.addRandomEgg(object)
+
         
         m.game.speed = 1000  ' game speed
 
@@ -78,17 +87,33 @@ function obj_eggs_position(object)
         m.game.eggs_position_img.slide_left_top[2] = { offset_x:(1280-width)/2-193, offset_y:(720-height)/2-28, rotation: 90 }
         m.game.eggs_position_img.slide_left_top[3] = { offset_x:(1280-width)/2-173, offset_y:(720-height)/2-10, rotation: 135 }
         m.game.eggs_position_img.slide_left_top[4] = { offset_x:(1280-width)/2-158, offset_y:(720-height)/2 + 8, rotation: 180 }
+        m.game.eggs_position_img.slide_left_top[5] = { offset_x:(1280-width)/2-138, offset_y:(720-height)/2 + 23, rotation: 180 }
        
         ' ###
         ' ### Render Eggs 
         for i = 0 to m.game.eggs_position_img.slide_left_top.Count()-1 step +1
-
-            ' if array data = 1 alpha_value =  50
+            ' ###
+            ' ### active eggs
+            if m.game.eggs_position_array.slide_left_top[i] = 0 then
+                alpha_value =  50
+            elseif m.game.eggs_position_array.slide_left_top[i] = 1 then
+                alpha_value =  255
+            end if
             
-            alpha_value =  255
+
+        ' ### Last Eggs Unvisible - only for triggering en event 
+            if i = m.game.eggs_position_img.slide_left_top.Count()-1  then
+                alpha_value =  0
+            end if
+            
+
+            ' alpha_value =  255
+            print m.game.eggs_position_array.slide_left_top[i]
+
             offset_x_value = ""
             offset_y_value = ""
             rotation_value = ""
+
             for each item in m.game.eggs_position_img.slide_left_top[i].Items()
                 if item.key = "offset_x" then
                     offset_x_value = item.value
