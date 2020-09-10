@@ -33,10 +33,8 @@ function room_start(object)
 		if m.game_started = false then
 
 			'### get fonts 
-			' font = m.game.getFont("font_start")
-			' DrawText(canvas, "Press OK to Play", canvas.GetWidth() / 2, canvas.GetHeight() - 50, font, "center", &hec4016FF)
-			
-			DrawText(canvas, "Press OK to Play", canvas.GetWidth() / 2, canvas.GetHeight() - 50, m.game.getFont("default"), "center", &hec4016FF)
+			m.game.font_WORKSHOP_Brush = m.game.getFont("font_WORKSHOP_Brush")
+			DrawText(canvas, "Press OK to Play", canvas.GetWidth() / 2, canvas.GetHeight() - 100, m.game.font_WORKSHOP_Brush, "center", &hec4016FF)
 		end if
 	end function
 

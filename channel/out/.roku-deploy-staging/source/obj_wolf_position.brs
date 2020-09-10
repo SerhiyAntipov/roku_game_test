@@ -1,22 +1,26 @@
 function obj_wolf_position(object)
 
     object.onCreate = function(args)
-        'game bg 
+        
+        '###
+        '### Create game bg 
         game_bg = m.game.getBitmap("game_bg")
         width = game_bg.GetWidth()
         height = game_bg.GetHeight()
         region = CreateObject("roRegion", game_bg, 0, 0, width, height)
         m.addImage("game_bg", region,{ offset_x:(1280-width)/2, offset_y:(720-height)/2})
-
-        ' array wolf posistion
+        
+        '###
+        '### Create array wolf posistion
         m.wolf_position = {
 			position_left: true
 			position_right: false
 			position_up: false
 			position_down: true
         }
-
-        '### WOLF + BASKET IMG 
+        
+        '###    
+        '### Create img  wolf + basket
         wolf_left = m.game.getBitmap("wolf_left")
         width = wolf_left.GetWidth()
         height = wolf_left.GetHeight()
@@ -76,20 +80,26 @@ function obj_wolf_position(object)
 	end function
 
     object.onDrawBegin = function(canvas)
+        
+        '###
+        '### Create bg Rect
         bg_rect = canvas.DrawRect(0, 0, 1280, 720, &hc3c2bfFF)
     end function  
 
     object.onDrawEnd = function(canvas)
-        ' ########### wolf left 
+        
+        '###
+        '### wolf left position
         if m.wolf_position.position_left = true then
             wolf_left_image = m.getImage("wolf_left_image")
             wolf_left_image.alpha = 255
             wolf_right_image = m.getImage("wolf_right_image")
             wolf_right_image.alpha = 0
-            ' text 
-            DrawText(canvas, "wolf left", canvas.GetWidth()/2, canvas.GetHeight()-50, m.game.getFont("default"), "center")
+            ' print text 
+            DrawText(canvas, "wolf left", canvas.GetWidth()/2, canvas.GetHeight()-50,  m.game.getFont("font_WORKSHOP_Brush"), "center", &hec4016FF)
            
-            ' ########### wolf left + left top basket 
+            '###
+            '### wolf left + left top basket position
             if m.wolf_position.position_up = true then                 
                 basket_left_top = m.getImage("basket_left_top_image")
                 basket_left_top.alpha = 255
@@ -99,10 +109,11 @@ function obj_wolf_position(object)
                 basket_right_top.alpha = 0
                 basket_right_bottom = m.getImage("basket_right_bottom_image")
                 basket_right_bottom.alpha = 0
-                'text + rect
-                DrawText(canvas, "wolf up", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("default"), "center")
-
-            ' ########### wolf left + left bottom basket     
+                'print text
+                DrawText(canvas, "wolf up", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("font_WORKSHOP_Brush"), "center", &hec4016FF)
+            
+            '###
+            '### wolf left + left bottom basket position 
             elseif m.wolf_position.position_down = true then
                 basket_left_top = m.getImage("basket_left_top_image")
                 basket_left_top.alpha = 0
@@ -112,21 +123,21 @@ function obj_wolf_position(object)
                 basket_right_top.alpha = 0
                 basket_right_bottom = m.getImage("basket_right_bottom_image")
                 basket_right_bottom.alpha = 0
-                'text + rect
-                DrawText(canvas, "wolf down", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("default"), "center")
+                'print text
+                DrawText(canvas, "wolf down", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("font_WORKSHOP_Brush"), "center", &hec4016FF)
             endif
-
-        ' ########### wolf right
-        elseif m.wolf_position.position_right = true then
-            '### img           
+        '###
+        '### wolf right position
+        elseif m.wolf_position.position_right = true then           
             wolf_right_image = m.getImage("wolf_right_image")
             wolf_right_image.alpha = 255
             wolf_left_image = m.getImage("wolf_left_image")
             wolf_left_image.alpha = 0
-            'text
-            DrawText(canvas, "wolf right", canvas.GetWidth()/2, canvas.GetHeight()-50, m.game.getFont("default"), "center")
+            'print text
+            DrawText(canvas, "wolf right", canvas.GetWidth()/2, canvas.GetHeight()-50, m.game.getFont("font_WORKSHOP_Brush"), "center", &hec4016FF)
             
-            ' ########### wolf right + right top basket   
+            '###
+            '### wolf right + right top basket position
             if m.wolf_position.position_up = true then
                 basket_left_top = m.getImage("basket_left_top_image")
                 basket_left_top.alpha = 0
@@ -136,10 +147,11 @@ function obj_wolf_position(object)
                 basket_right_top.alpha = 255
                 basket_right_bottom = m.getImage("basket_right_bottom_image")
                 basket_right_bottom.alpha = 0
-                'text + rect
-                DrawText(canvas, "wolf up", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("default"), "center")
+                'print text
+                DrawText(canvas, "wolf up", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("font_WORKSHOP_Brush"), "center", &hec4016FF)
 
-            ' ########### wolf right + right bottom basket 
+            '###
+            '### wolf right + right bottom basket position 
             elseif m.wolf_position.position_down = true then
                 basket_left_top = m.getImage("basket_left_top_image")
                 basket_left_top.alpha = 0
@@ -149,8 +161,8 @@ function obj_wolf_position(object)
                 basket_right_top.alpha = 0
                 basket_right_bottom = m.getImage("basket_right_bottom_image")
                 basket_right_bottom.alpha = 255
-                ' text + rect
-                DrawText(canvas, "wolf down", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("default"), "center")
+                'print text
+                DrawText(canvas, "wolf down", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.getFont("font_WORKSHOP_Brush"), "center", &hec4016FF)
             end if
         end if
     end function
