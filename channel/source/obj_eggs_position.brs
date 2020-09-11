@@ -1,9 +1,13 @@
 function obj_eggs_position(object)
 
     object.onCreate = function(args)  
+        
+        ' ### 
+        ' ### Get eggs coordinates 
+        m.game.createInstance("eggs_coordinates")
 
         ' ###   
-        ' ### Array eggs position
+        ' ### Create array eggs position
         m.game.eggs_position_array = {
             slide_left_top: [0, 0, 0, 0, 0, 0]
             slide_left_bottom: [0, 0, 0, 0, 0, 0]
@@ -13,7 +17,7 @@ function obj_eggs_position(object)
 
         ' ###
         ' ### Function add random egg 
-        m.addRandomEgg = function (object)
+        m.addRandomEgg = function ()
             m.game.random_number = RND(4)
             m.game.random_number = m.game.random_number-1
 
@@ -40,56 +44,12 @@ function obj_eggs_position(object)
                     m.game.eggs_position_array.[item.key].Pop()
                 end if
             end for  
+           
         end function
-
-        m.addRandomEgg(object)
-        m.addRandomEgg(object)
-        m.addRandomEgg(object)
-        m.addRandomEgg(object)
-        m.addRandomEgg(object)
-         
-        ' ###
-        ' ### SetTimeout
-        m.game.speed = 1000  ' game speed
-        ' queue = Sequence(m)
-        '     queue.addAction(DelayTime(m, delay))
-        '     queue.addAction(CallFunc(m,{evt:"evt_name"},function(host,data)
-        '         'host - is your calling object
-
-
-        '         'example of scope processing
-        '         globalm = GetGlobalAA()
-        '         globalm.game.postGameEvent(data.evt, {foo:"bar"})
-
-        '     end function))
-        ' queue.Run()
-
-        ' ###
-        ' ### Eggs img position 
-        egg = m.game.getBitmap("egg")
-        width = egg.GetWidth() 'only for ofset width
-        height = egg.GetHeight() 'only for ofset height
-       
-        ' ### Eggs position array 
-        m.game.eggs_position_img = {}
-        m.game.eggs_position_img.slide_left_top = []
-        m.game.eggs_position_img.slide_left_top[0] = { offset_x:(1280-width)/2-245, offset_y:(720-height)/2-50, rotation: 0 }
-        m.game.eggs_position_img.slide_left_top[1] = { offset_x:(1280-width)/2-217, offset_y:(720-height)/2-42, rotation: 45 }
-        m.game.eggs_position_img.slide_left_top[2] = { offset_x:(1280-width)/2-193, offset_y:(720-height)/2-28, rotation: 90 }
-        m.game.eggs_position_img.slide_left_top[3] = { offset_x:(1280-width)/2-173, offset_y:(720-height)/2-10, rotation: 135 }
-        m.game.eggs_position_img.slide_left_top[4] = { offset_x:(1280-width)/2-158, offset_y:(720-height)/2 + 8, rotation: 180 }
-        m.game.eggs_position_img.slide_left_top[5] = { offset_x:(1280-width)/2-138, offset_y:(720-height)/2 + 23, rotation: 0 }
-        m.game.eggs_position_img.slide_left_bottom = []
-        m.game.eggs_position_img.slide_left_bottom[0] = { offset_x:(1280-width)/2-241, offset_y:(720-height)/2+30, rotation: 0 }
-        m.game.eggs_position_img.slide_left_bottom[1] = { offset_x:(1280-width)/2-213, offset_y:(720-height)/2+38, rotation: 45 }
-        m.game.eggs_position_img.slide_left_bottom[2] = { offset_x:(1280-width)/2-189, offset_y:(720-height)/2+52, rotation: 90 }
-        m.game.eggs_position_img.slide_left_bottom[3] = { offset_x:(1280-width)/2-169, offset_y:(720-height)/2+70, rotation: 135 }
-        m.game.eggs_position_img.slide_left_bottom[4] = { offset_x:(1280-width)/2-154, offset_y:(720-height)/2 + 88, rotation: 180 }
-        m.game.eggs_position_img.slide_left_bottom[5] = { offset_x:(1280-width)/2-134, offset_y:(720-height)/2 + 103, rotation: 0 }
-       
+        
         ' ###
         ' ### Render eggs 
-        m.renderEgg = function (object)
+        m.renderEggs = function ()
 
             ' ### Create egg img object 
             egg = m.game.getBitmap("egg")
@@ -112,12 +72,18 @@ function obj_eggs_position(object)
 
                 ' ### For 2 layer
                 for i = 0 to item_value.Count()-1 step +1  
-                    if item_key = "slide_left_bottom" then
-                        name_img = "egg_lb_"
-                    elseif item_key = "slide_left_top" then
+                    if item_key = "slide_left_top" then
                         name_img = "egg_lt_"
+                    elseif item_key = "slide_left_bottom" then
+                        name_img = "egg_lb_"
+                    elseif item_key = "slide_right_top" then
+                        name_img = "egg_rt_"
+                    elseif item_key = "slide_right_bottom" then
+                        name_img = "egg_rb_"
                     end if
 
+
+                    alpha_value =  255
                     ' ### Visuble eggs equal "1" in array "m.game.eggs_position_array"
                     if m.game.eggs_position_array[item_key][i] = 0 then
                         alpha_value =  50
@@ -130,8 +96,6 @@ function obj_eggs_position(object)
                         alpha_value =  0
                     end if
                    
-
-                    print item_key
                     ' ### For each 3 layer
                     for each item in m.game.eggs_position_img.[item_key][i].Items()
                         if item.key = "offset_x" then
@@ -144,42 +108,34 @@ function obj_eggs_position(object)
                     end for
     
                     m.addImage( name_img.ToStr() + i.ToStr(), region,{ offset_x: offset_x_value, offset_y: offset_y_value, alpha: alpha_value, rotation: rotation_value, class: "egg"})
-                    print name_img.ToStr() + i.ToStr()
+
                 end for 
             end for
 
-            ' for i = 0 to m.game.eggs_position_img.slide_left_top.Count()-1 step +1              
-                
-            '     ' ### Visuble eggs equal "1" in array "m.game.eggs_position_array"
-            '     if m.game.eggs_position_array.slide_left_top[i] = 0 then
-            '         alpha_value =  50
-            '     elseif m.game.eggs_position_array.slide_left_top[i] = 1 then
-            '         alpha_value =  255
-            '     end if
-
-            '     ' ### Last eggs unvisible - only for triggering en event 
-            '     if i = m.game.eggs_position_img.slide_left_top.Count()-1  then
-            '         alpha_value =  0
-            '     end if
-               
-
-            '     for each item in m.game.eggs_position_img.slide_left_top[i].Items()
-            '         if item.key = "offset_x" then
-            '             offset_x_value = item.value
-            '         elseif item.key = "offset_y" then
-            '             offset_y_value = item.value
-            '         elseif item.key = "rotation" then
-            '             rotation_value = item.value
-            '         end if
-            '     end for
-
-            '     m.addImage( "egg_lt_" + i.ToStr(), region,{ offset_x: offset_x_value, offset_y: offset_y_value, alpha: alpha_value, rotation: rotation_value, class: "egg"})
-            
-            ' end for 
-            
         end function
 
-        m.renderEgg(object)
+        m.addRandomEgg()
+        m.addRandomEgg()
+        m.addRandomEgg()
+        m.addRandomEgg()
+        m.addRandomEgg()
+        m.renderEggs()
+
+        ' ###
+        ' ### SetTimeout
+        m.game.speed = 1000  ' game speed
+        ' queue = Sequence(m)
+        '     queue.addAction(DelayTime(m, delay))
+        '     queue.addAction(CallFunc(m,{evt:"evt_name"},function(host,data)
+        '         'host - is your calling object
+
+
+        '         'example of scope processing
+        '         globalm = GetGlobalAA()
+        '         globalm.game.postGameEvent(data.evt, {foo:"bar"})
+
+        '     end function))
+        ' queue.Run()
     
     end function
 

@@ -39,6 +39,7 @@ sub Main()
 	' ### load object
 	game.defineObject("pause_handler", obj_pause_handler)
 	game.defineObject("score_handler", obj_score_handler)
+	game.defineObject("eggs_coordinates", obj_eggs_coordinates)
 	game.defineObject("wolf_position", obj_wolf_position)
 	game.defineObject("eggs_position", obj_eggs_position)
 	game.defineObject("clock", obj_clock)
