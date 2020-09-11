@@ -1,6 +1,10 @@
 sub Main()
+
+	' ###
+	' ### Initializes the game engine
 	game = new_game(1280, 720, true) ' This initializes the game engine
 	
+	' ###
 	' ### load bitmap
 	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
 	game.loadBitmap("game_bg", "pkg:/sprites/game_bg.png")
@@ -15,19 +19,23 @@ sub Main()
 	game.loadBitmap("numbers", "pkg:/sprites/numbers.png")
 	game.loadBitmap("number_bg", "pkg:/sprites/number_bg.png")
 	
+	' ###
 	' ### load sound
 	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
 	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
 	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
 
+	' ###
 	' ### load font 
 	game.loadFont("font_WORKSHOP_Brush", "WORKSHOP Brush", 40, false, false)
 	game.loadFont("font_SF_Digital_Readout", "SF Digital Readout", 36, false, false)
-		
+	
+	' ###
 	' ### load room
 	game.defineRoom("room_game", room_game)
 	game.defineRoom("room_start", room_start)
 
+	' ###
 	' ### load object
 	game.defineObject("pause_handler", obj_pause_handler)
 	game.defineObject("score_handler", obj_score_handler)
@@ -35,9 +43,12 @@ sub Main()
 	game.defineObject("eggs_position", obj_eggs_position)
 	game.defineObject("clock", obj_clock)
 
+	' ###
 	' ### sellect room
 	game.changeRoom("room_start")
 
+	' ###
 	' ### start game
 	game.Play()
+	
 end sub

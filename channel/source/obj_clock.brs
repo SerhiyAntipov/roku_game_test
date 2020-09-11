@@ -31,7 +31,7 @@ function obj_clock(object)
 
 
     object.onCreate = function(args)
-        print "clock start"
+        m.clock = "00:00"
     end function
 
     object.onUpdate = function(dt)
@@ -48,7 +48,7 @@ function obj_clock(object)
         ' timer = timer.ToStr()
         ' Print timer
        
-        DrawText(canvas, "00:00", canvas.GetWidth()/2, 230, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
+        DrawText(canvas, m.clock, canvas.GetWidth()/2, 230, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
     end function  
 
     object.onDrawEnd = function(canvas)

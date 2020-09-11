@@ -15,8 +15,6 @@ function obj_pause_handler(object)
 		end if
 
 		' -------Button Code Reference--------
-		' Pressed | Released | Held
-
 		' Back  0  100 1000
 		' Up  2  102 1002
 		' Down  3  103 1003
