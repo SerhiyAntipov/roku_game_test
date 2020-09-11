@@ -15,6 +15,8 @@ function obj_eggs_position(object)
             slide_right_bottom: [0, 0, 0, 0, 0, 0]
         }
 
+
+
         ' ###
         ' ### Function add random egg 
         m.addRandomEgg = function ()
@@ -31,8 +33,6 @@ function obj_eggs_position(object)
                 m.game.random_slide = "slide_right_top"
             else if m.game.random_number = 3 then
                 m.game.random_slide = "slide_right_bottom"
-            else
-                print "ERROR" 
             end if
 
             for each item in m.game.eggs_position_array.Items()
@@ -47,9 +47,13 @@ function obj_eggs_position(object)
            
         end function
         
+
+
         ' ###
         ' ### Render eggs 
         m.renderEggs = function ()
+            ' m.game.eggs_position_array 
+
 
             ' ### Create egg img object 
             egg = m.game.getBitmap("egg")
@@ -64,7 +68,7 @@ function obj_eggs_position(object)
 
             ' ### For each 1 layer "m.game.eggs_position_img"
             for each item in m.game.eggs_position_img.Items() 
-
+   
                 item_key = item.key
                 item_value = item.value
 
@@ -73,15 +77,14 @@ function obj_eggs_position(object)
                 ' ### For 2 layer
                 for i = 0 to item_value.Count()-1 step +1  
                     if item_key = "slide_left_top" then
-                        name_img = "egg_lt_"
+                        name_img = "slide_left_top"
                     elseif item_key = "slide_left_bottom" then
-                        name_img = "egg_lb_"
+                        name_img = "slide_left_bottom"
                     elseif item_key = "slide_right_top" then
-                        name_img = "egg_rt_"
+                        name_img = "slide_right_top"
                     elseif item_key = "slide_right_bottom" then
-                        name_img = "egg_rb_"
+                        name_img = "slide_right_bottom"
                     end if
-
 
                     alpha_value =  255
                     ' ### Visuble eggs equal "1" in array "m.game.eggs_position_array"
@@ -107,13 +110,14 @@ function obj_eggs_position(object)
                         end if
                     end for
     
-                    m.addImage( name_img.ToStr() + i.ToStr(), region,{ offset_x: offset_x_value, offset_y: offset_y_value, alpha: alpha_value, rotation: rotation_value, class: "egg"})
+                    m.addImage( name_img.ToStr() + "_" + i.ToStr(), region,{ offset_x: offset_x_value, offset_y: offset_y_value, alpha: alpha_value, rotation: rotation_value, class: name_img.ToStr(), img_id: i})
 
                 end for 
             end for
 
         end function
 
+        
         m.addRandomEgg()
         m.addRandomEgg()
         m.addRandomEgg()
