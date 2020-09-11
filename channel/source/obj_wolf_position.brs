@@ -25,7 +25,7 @@ function obj_wolf_position(object)
         width = wolf_left.GetWidth()
         height = wolf_left.GetHeight()
         region = CreateObject("roRegion", wolf_left, 0, 0, width, height)
-        m.addImage("wolf_left_image", region,{ offset_x:(1280-width)/2 - 55, offset_y:(720-height)/2 + 70, alpha: 0, class: "wolf"})
+        m.addImage("wolf_left_image", region,{ offset_x:(1280-width)/2 - 55, offset_y:(720-height)/2 + 67, alpha: 0, class: "wolf"})
 
         wolf_right = m.game.getBitmap("wolf_right")
         width = wolf_right.GetWidth()

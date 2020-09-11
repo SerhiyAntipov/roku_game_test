@@ -22,6 +22,7 @@ sub Main()
 
 	' ### load font 
 	game.loadFont("font_WORKSHOP_Brush", "WORKSHOP Brush", 40, false, false)
+	game.loadFont("font_SF_Digital_Readout", "SF Digital Readout", 36, false, false)
 		
 	' ### load room
 	game.defineRoom("room_game", room_game)
