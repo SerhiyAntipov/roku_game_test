@@ -1,6 +1,7 @@
 function room_game(object)
 
 	object.onCreate = function(args)
+
 		m.game.createInstance("clock")
 		m.game.createInstance("eggs_position")
 		m.game.createInstance("pause_handler")
@@ -15,10 +16,11 @@ function room_game(object)
 	end function
 
 	object.onDrawBegin = function(canvas)	
+	
 	end function
 
 	object.onDrawEnd = function(canvas)
-	
+
 	end function
 	
 	'###

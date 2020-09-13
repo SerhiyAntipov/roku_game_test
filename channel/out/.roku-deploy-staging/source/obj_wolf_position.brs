@@ -57,10 +57,15 @@ function obj_wolf_position(object)
         region = CreateObject("roRegion", basket_right_bottom, 0, 0, width, height)
         m.addImage("basket_right_bottom_image", region,{ offset_x:(1280-width)/2 + 125, offset_y:(720-height)/2 + 105, alpha: 0, class: "basket"})
 
-    end function
+        '###    
+        '### Create clone img
+        m.wolf_left_image = m.getImage("wolf_left_image")
+        m.wolf_right_image = m.getImage("wolf_right_image")
+        m.basket_left_top = m.getImage("basket_left_top_image")
+        m.basket_left_bottom = m.getImage("basket_left_bottom_image")
+        m.basket_right_top = m.getImage("basket_right_top_image")
+        m.basket_right_bottom = m.getImage("basket_right_bottom_image")
 
-    object.onUpdate = function(dt)
-        
     end function
   
     object.onButton = function(code as integer)
@@ -79,50 +84,44 @@ function obj_wolf_position(object)
         end if
 	end function
 
-    object.onDrawBegin = function(canvas)
-        
+    object.onUpdate = function(dt) 
+    end function
+
+    object.onDrawBegin = function(canvas)      
         '###
         '### Create bg Rect
         bg_rect = canvas.DrawRect(0, 0, 1280, 720, &hc3c2bfFF)
     end function  
+
+
 
     object.onDrawEnd = function(canvas)
         
         '###
         '### wolf left position
         if m.wolf_position.position_left = true then
-            wolf_left_image = m.getImage("wolf_left_image")
-            wolf_left_image.alpha = 255
-            wolf_right_image = m.getImage("wolf_right_image")
-            wolf_right_image.alpha = 0
+            m.wolf_left_image.alpha = 255
+            m.wolf_right_image.alpha = 0
             ' print text 
             DrawText(canvas, "wolf left", canvas.GetWidth()/2, canvas.GetHeight()-70,  m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
            
             '###
             '### wolf left + left top basket position
             if m.wolf_position.position_top = true then                 
-                basket_left_top = m.getImage("basket_left_top_image")
-                basket_left_top.alpha = 255
-                basket_left_bottom = m.getImage("basket_left_bottom_image")
-                basket_left_bottom.alpha = 0
-                basket_right_top = m.getImage("basket_right_top_image")
-                basket_right_top.alpha = 0
-                basket_right_bottom = m.getImage("basket_right_bottom_image")
-                basket_right_bottom.alpha = 0
+                m.basket_left_top.alpha = 255
+                m.basket_left_bottom.alpha = 0
+                m.basket_right_top.alpha = 0
+                m.basket_right_bottom.alpha = 0
                 'print text
                 DrawText(canvas, "basket top", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
             
             '###
             '### wolf left + left bottom basket position 
             elseif m.wolf_position.position_bottom = true then
-                basket_left_top = m.getImage("basket_left_top_image")
-                basket_left_top.alpha = 0
-                basket_left_bottom = m.getImage("basket_left_bottom_image")
-                basket_left_bottom.alpha = 255
-                basket_right_top = m.getImage("basket_right_top_image")
-                basket_right_top.alpha = 0
-                basket_right_bottom = m.getImage("basket_right_bottom_image")
-                basket_right_bottom.alpha = 0
+                m.basket_left_top.alpha = 0
+                m.basket_left_bottom.alpha = 255
+                m.basket_right_top.alpha = 0
+                m.basket_right_bottom.alpha = 0
                 'print text
                 DrawText(canvas, "basket bottom", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
             endif
@@ -130,38 +129,28 @@ function obj_wolf_position(object)
         '###
         '### wolf right position
         elseif m.wolf_position.position_right = true then           
-            wolf_right_image = m.getImage("wolf_right_image")
-            wolf_right_image.alpha = 255
-            wolf_left_image = m.getImage("wolf_left_image")
-            wolf_left_image.alpha = 0
+            m.wolf_right_image.alpha = 255
+            m.wolf_left_image.alpha = 0
             'print text
             DrawText(canvas, "wolf right", canvas.GetWidth()/2, canvas.GetHeight()-70, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
             
             '###
             '### wolf right + right top basket position
             if m.wolf_position.position_top = true then
-                basket_left_top = m.getImage("basket_left_top_image")
-                basket_left_top.alpha = 0
-                basket_left_bottom = m.getImage("basket_left_bottom_image")
-                basket_left_bottom.alpha = 0
-                basket_right_top = m.getImage("basket_right_top_image")
-                basket_right_top.alpha = 255
-                basket_right_bottom = m.getImage("basket_right_bottom_image")
-                basket_right_bottom.alpha = 0
+                m.basket_left_top.alpha = 0
+                m.basket_left_bottom.alpha = 0
+                m.basket_right_top.alpha = 255
+                m.basket_right_bottom.alpha = 0
                 'print text
                 DrawText(canvas, "basket top", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
 
             '###
             '### wolf right + right bottom basket position 
             elseif m.wolf_position.position_bottom = true then
-                basket_left_top = m.getImage("basket_left_top_image")
-                basket_left_top.alpha = 0
-                basket_left_bottom = m.getImage("basket_left_bottom_image")
-                basket_left_bottom.alpha = 0
-                basket_right_top = m.getImage("basket_right_top_image")
-                basket_right_top.alpha = 0
-                basket_right_bottom = m.getImage("basket_right_bottom_image")
-                basket_right_bottom.alpha = 255
+                m.basket_left_top.alpha = 0
+                m.basket_left_bottom.alpha = 0
+                m.basket_right_top.alpha = 0
+                m.basket_right_bottom.alpha = 255
                 'print text
                 DrawText(canvas, "basket bottom", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
             end if

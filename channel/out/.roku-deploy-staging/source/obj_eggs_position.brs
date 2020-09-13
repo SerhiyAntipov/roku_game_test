@@ -1,10 +1,6 @@
 function obj_eggs_position(object)
 
     object.onCreate = function(args)  
-        
-        ' ### 
-        ' ### Get eggs coordinates 
-        m.game.createInstance("eggs_coordinates")
 
         ' ###   
         ' ### Create array eggs position
@@ -14,8 +10,6 @@ function obj_eggs_position(object)
             slide_right_top: [0, 0, 0, 0, 0, 0]
             slide_right_bottom: [0, 0, 0, 0, 0, 0]
         }
-
-
 
         ' ###
         ' ### Function add random egg 
@@ -46,14 +40,14 @@ function obj_eggs_position(object)
             end for  
            
         end function
-        
 
+        ' ### 
+        ' ### Get eggs coordinates 
+        m.game.createInstance("eggs_coordinates")
 
         ' ###
         ' ### Render eggs 
         m.renderEggs = function ()
-            ' m.game.eggs_position_array 
-
 
             ' ### Create egg img object 
             egg = m.game.getBitmap("egg")
@@ -109,14 +103,13 @@ function obj_eggs_position(object)
                             rotation_value = item.value
                         end if
                     end for
-    
+
                     m.addImage( name_img.ToStr() + "_" + i.ToStr(), region,{ offset_x: offset_x_value, offset_y: offset_y_value, alpha: alpha_value, rotation: rotation_value, class: name_img.ToStr(), img_id: i})
 
                 end for 
             end for
 
         end function
-
         
         m.addRandomEgg()
         m.addRandomEgg()
