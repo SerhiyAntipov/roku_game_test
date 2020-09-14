@@ -68,7 +68,7 @@ function obj_eggs_position(object)
                 name_img = ""                
 
                 ' ### For 2 layer
-                for i = 0 to item_value.Count()-1 step +1  
+                for i = 0 to item_value.Count()-1 step i + 1  
                     if item_key = "slide_left_top" then
                         name_img = "slide_left_top"
                     elseif item_key = "slide_left_bottom" then
@@ -79,10 +79,10 @@ function obj_eggs_position(object)
                         name_img = "slide_right_bottom"
                     end if
 
-                    alpha_value =  50
+                    alpha_value =  30
                        
                     ' ### Last eggs unvisible - only for triggering en event 
-                    if i = item_value.Count()-1  then
+                    if i = item_value.Count() - 1  then
                         alpha_value =  0
                     end if
                    
@@ -102,6 +102,36 @@ function obj_eggs_position(object)
         end function
         m.renderEggs()
 
+
+        ' ### 
+        ' ### Track Event
+        m.gameEventTracked = function () 
+       
+            for each item in m.game.eggs_position_array.Items()
+                item_key = item.key
+                item_value = item.value
+
+                lastArrayEllement = m.game.eggs_position_array[item_key].Count()-1
+
+                if m.game.eggs_position_array[item_key][lastArrayEllement] = 1 then
+                       
+                    if item_key = "slide_left_top" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_top"] = true then
+                        print "score"
+                    elseif item_key = "slide_left_bottom" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_bottom"] = true then
+                        print "score"
+                    elseif item_key = "slide_right_top"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_top"] = true then
+                        print "score"
+                    elseif item_key = "slide_right_bottom"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_bottom"] = true then
+                        print "score"
+                    else
+                        print "lose"
+                    end if
+                    
+                end if
+
+            end for
+        end function
+ 
         ' ### 
         ' ### Create clon all eggs img
         m.cloneEggsImg = function ()      
@@ -111,7 +141,7 @@ function obj_eggs_position(object)
             m.allEggsImg.slide_right_top = []
             m.allEggsImg.slide_right_bottom = []
         
-            for i = 0 to  m.images.Count()-1 step +1 
+            for i = 0 to  m.images.Count()-1 step i + 1 
                 if m.images[i]["class"] = "slide_left_top" then
                     m.allEggsImg.slide_left_top.push(m.images[i])
                 elseif m.images[i]["class"] = "slide_left_bottom"  then
@@ -138,13 +168,13 @@ function obj_eggs_position(object)
                 item_value = item.value
                 
                 ' ### For 2 leyer 
-                for  i = 0 to m.game.eggs_position_array[item_key].Count()-1 step +1 
+                for  i = 0 to m.game.eggs_position_array[item_key].Count()-1 step i + 1 
                                        
                     ' ### Visuble eggs equal "1" in array "m.game.eggs_position_array"
                     if m.game.eggs_position_array[item_key][i] = 1 then
                         m.allEggsImg[item_key][i]["alpha"] = 255
                     else 
-                        m.allEggsImg[item_key][i]["alpha"] = 50
+                        m.allEggsImg[item_key][i]["alpha"] = 30
                     end if
 
                     ' ### Last eggs unvisible - only for triggering en event 
@@ -191,8 +221,9 @@ function obj_eggs_position(object)
         print "call timerFunc after: " ; elapsed
         m.addRandomEgg()
         m.drawActiveEggs()
+        m.gameEventTracked()
     end function
-
+     
     object.onButton = function(code as integer)
     end function
 
