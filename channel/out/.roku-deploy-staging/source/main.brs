@@ -3,6 +3,7 @@ sub Main()
 	' ###
 	' ### Initializes the game engine
 	game = new_game(1280, 720, true) ' This initializes the game engine
+	m.game = game
 	
 	' ###
 	' ### load bitmap
@@ -43,6 +44,11 @@ sub Main()
 	game.defineObject("wolf_position", obj_wolf_position)
 	game.defineObject("eggs_position", obj_eggs_position)
 	game.defineObject("clock", obj_clock)
+	game.defineObject("libTweener", tweener)
+
+	' ###
+	' ### initialize tools and controllers
+	game.tweener = game.createInstance("libTweener",{persistent:true})
 
 	' ###
 	' ### sellect room

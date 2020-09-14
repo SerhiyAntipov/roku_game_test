@@ -79,18 +79,12 @@ function obj_eggs_position(object)
                         name_img = "slide_right_bottom"
                     end if
 
-                    alpha_value =  0
-                    ' ' ### Visuble eggs equal "1" in array "m.game.eggs_position_array"
-                    ' if m.game.eggs_position_array[item_key][i] = 0 then
-                    '     alpha_value =  50
-                    ' elseif m.game.eggs_position_array[item_key][i] = 1 then
-                    '     alpha_value =  255
-                    ' end if
-    
-                    ' ' ### Last eggs unvisible - only for triggering en event 
-                    ' if i = item_value.Count()-1  then
-                    '     alpha_value =  0
-                    ' end if
+                    alpha_value =  50
+                       
+                    ' ### Last eggs unvisible - only for triggering en event 
+                    if i = item_value.Count()-1  then
+                        alpha_value =  0
+                    end if
                    
                     ' ### For each 3 layer
                     for each item in m.game.eggs_position_img.[item_key][i].Items()
@@ -165,37 +159,38 @@ function obj_eggs_position(object)
 
         ' ###
         ' ### SetTimeout
-        m.game.speed = 1000  ' game speed
+        ' m.game.speed = 1000  ' game speed
 
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-
+        ' ###
+        ' ### option 1 - using custom acltions
         ' queue = Sequence(m)
-        '     queue.addAction(DelayTime(m, delay))
-        '     queue.addAction(CallFunc(m,{evt:"evt_name"},function(host,data)
-        '         'host - is your calling object
+		' queue.addAction(DelayTime(m, m.game.speed))
+        ' queue.addAction(CallFunc(m, {param:"optional data"}, function(host,data)
+        '     host.addRandomEgg()
+        '     host.drawActiveEggs()
+        ' end function))
 
-
-        '         'example of scope processing
-        '         globalm = GetGlobalAA()
-        '         globalm.game.postGameEvent(data.evt, {foo:"bar"})
-
-        '     end function))
-        ' queue.Run()
+		' LoopAction(m,queue).Run()
     
+        ' ###
+        ' ### option 2 - using roTimeSpan
+        m.game.speed = 1000
+        m.timer=createobject("roTimeSpan")
+        m.timer.mark()
+
     end function
 
     object.onUpdate = function(dt)
+        if m.timer.TotalMilliseconds() >= m.game.speed
+            m.timerFunc(m.timer.TotalMilliseconds())
+            m.timer.mark()
+        end if
+    end function
+
+    object.timerFunc = function(elapsed)
+        print "call timerFunc after: " ; elapsed
+        m.addRandomEgg()
+        m.drawActiveEggs()
     end function
 
     object.onButton = function(code as integer)
