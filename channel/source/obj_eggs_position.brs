@@ -167,35 +167,37 @@ function obj_eggs_position(object)
         ' ### SetTimeout
         m.game.speed = 1000  ' game speed
 
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
-        m.addRandomEgg()
-        m.drawActiveEggs()
+        ' m.addRandomEgg()
+        ' m.drawActiveEggs()
+        
 
-        ' queue = Sequence(m)
-        '     queue.addAction(DelayTime(m, delay))
-        '     queue.addAction(CallFunc(m,{evt:"evt_name"},function(host,data)
-        '         'host - is your calling object
+        ' ###
+        ' ### option 1 - using custom acltions
+        queue = Sequence(m)
+		queue.addAction(DelayTime(m, m.game.speed))
+        queue.addAction(CallFunc(m, {param:"optional data"}, function(host,data)
+            host.addRandomEgg()
+            host.drawActiveEggs()
+        end function))
 
-
-        '         'example of scope processing
-        '         globalm = GetGlobalAA()
-        '         globalm.game.postGameEvent(data.evt, {foo:"bar"})
-
-        '     end function))
-        ' queue.Run()
+		LoopAction(m,queue).Run()
     
+        ' ###
+        ' ### option 2 - using roTimeSpan
+        m.timer=createobject("roTimeSpan")
+        m.timer.mark()
+
     end function
 
     object.onUpdate = function(dt)
+        if m.timer.TotalMilliseconds() >= m.game.speed
+            m.timerFunc(m.timer.TotalMilliseconds())
+            m.timer.mark()
+        end if
+    end function
+
+    object.timerFunc = function(elapsed)
+        print "call timerFunc after: " ; elapsed
     end function
 
     object.onButton = function(code as integer)
