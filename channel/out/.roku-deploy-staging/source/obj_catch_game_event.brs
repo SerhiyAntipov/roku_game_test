@@ -18,9 +18,13 @@ function obj_catch_game_event(object)
 					m.game.postGameEvent("score")
 				elseif item_key = "slide_right_bottom"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_bottom"] = true then
 					m.game.postGameEvent("score")
-				elseif  item_key = "slide_left_top"  or item_key = "slide_left_bottom" and m.game.wolf_position["position_left"] = false then
+				elseif  item_key = "slide_left_top" and m.game.wolf_position["position_left"] = false or m.game.wolf_position["position_top"] = false then
 					m.game.postGameEvent("lose", {side: "left"})
-				elseif  item_key = "slide_right_top"  or item_key = "slide_right_bottom" and m.game.wolf_position["position_right"] = false then
+				elseif  item_key = "slide_left_bottom" and m.game.wolf_position["position_left"] = false or m.game.wolf_position["position_bottom"] = false then
+					m.game.postGameEvent("lose", {side: "left"})
+				elseif  item_key = "slide_right_top" and m.game.wolf_position["position_right"] = false or m.game.wolf_position["position_top"] = false then
+					m.game.postGameEvent("lose", {side: "right"})
+				elseif  item_key = "slide_right_bottom" and m.game.wolf_position["position_right"] = false or m.game.wolf_position["position_bottom"] = false then
 					m.game.postGameEvent("lose", {side: "right"})
 				end if
 				

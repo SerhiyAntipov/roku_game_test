@@ -23,7 +23,6 @@ function obj_score_handler(object)
             
         end if
 
-
         ' ### 
         ' ### Rewriting game speed
         if m.game.scores.eggs > 250 then
