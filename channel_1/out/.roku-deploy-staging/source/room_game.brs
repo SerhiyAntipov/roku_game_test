@@ -27,8 +27,8 @@ function room_game(object)
 	'###  click button "<-"" 
 	object.onButton = function(button)
 		if button = 0 then
-			m.game.changeRoom("room_start")	
-			' m.game.End()
+			' m.game.changeRoom("room_start")	
+			m.game.End()
 		end if
 	end function
 		

@@ -9,8 +9,10 @@ function obj_pause_handler(object)
 		if code = 13 then
 				if not m.game.isPaused() then
 					m.game.Pause()
+					m.game.timer.mark()
 				else
 					m.game.Resume()
+					m.game.timer.mark()
 				end if
 		end if
 

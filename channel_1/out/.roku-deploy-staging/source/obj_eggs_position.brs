@@ -209,17 +209,29 @@ function obj_eggs_position(object)
     
         ' ###
         ' ### option 2 - using roTimeSpan
-        m.game.speed = 1000
-        m.timer=createobject("roTimeSpan")
-        m.timer.mark()
+        m.game.speed = 1500
+        m.game.timer=createobject("roTimeSpan")
+        m.game.timer.mark()
 
     end function
 
     object.onUpdate = function(dt)
-        if m.timer.TotalMilliseconds() >= m.game.speed
-            m.timerFunc(m.timer.TotalMilliseconds())
-            m.timer.mark()
+        if m.game.timer.TotalMilliseconds() >= m.game.speed
+            m.timerFunc(m.game.timer.TotalMilliseconds())
+            m.game.timer.mark()
         end if
+
+        ' ### 
+        ' ### Rewrite game speed
+        if m.game.scores.eggs > 40 then
+            m.game.speed = 500
+        elseif m.game.scores.eggs > 30 then
+            m.game.speed = 750
+        elseif m.game.scores.eggs > 20 then
+            m.game.speed = 1000
+        elseif m.game.scores.eggs > 10 then
+            m.game.speed = 1250
+        end if    
     end function
 
     object.timerFunc = function(elapsed)
