@@ -25,13 +25,13 @@ function obj_wolf_position(object)
         width = wolf_left.GetWidth()
         height = wolf_left.GetHeight()
         region = CreateObject("roRegion", wolf_left, 0, 0, width, height)
-        m.addImage("wolf_left_image", region,{ offset_x:(1280-width)/2 - 55, offset_y:(720-height)/2 + 67, alpha: 15, class: "wolf"})
+        m.addImage("wolf_left_image", region,{ offset_x:(1280-width)/2 - 60, offset_y:(720-height)/2 + 67, alpha: 15, class: "wolf"})
 
         wolf_right = m.game.getBitmap("wolf_right")
         width = wolf_right.GetWidth()
         height = wolf_right.GetHeight()
         region = CreateObject("roRegion", wolf_right, 0, 0, width, height)
-        m.addImage("wolf_right_image", region,{ offset_x:(1280-width)/2 + 62, offset_y:(720-height)/2 + 67, alpha: 15, class: "wolf"})
+        m.addImage("wolf_right_image", region,{ offset_x:(1280-width)/2 + 60, offset_y:(720-height)/2 + 67, alpha: 15, class: "wolf"})
 
         basket_left_top = m.game.getBitmap("basket_left_top")
         width = basket_left_top.GetWidth()
@@ -43,19 +43,19 @@ function obj_wolf_position(object)
         width = basket_left_bottom.GetWidth()
         height = basket_left_bottom.GetHeight()
         region = CreateObject("roRegion", basket_left_bottom, 0, 0, width, height)
-        m.addImage("basket_left_bottom_image", region,{ offset_x:(1280-width)/2 - 125, offset_y:(720-height)/2 + 98, alpha: 15, class: "basket"})
+        m.addImage("basket_left_bottom_image", region,{ offset_x:(1280-width)/2 - 125, offset_y:(720-height)/2 + 90, alpha: 15, class: "basket"})
 
         basket_right_top = m.game.getBitmap("basket_right_top")
         width = basket_right_top.GetWidth()
         height = basket_right_top.GetHeight()
         region = CreateObject("roRegion", basket_right_top, 0, 0, width, height)
-        m.addImage("basket_right_top_image", region,{ offset_x:(1280-width)/2 + 130, offset_y:(720-height)/2 + 30, alpha: 15, class: "basket"})
+        m.addImage("basket_right_top_image", region,{ offset_x:(1280-width)/2 + 125, offset_y:(720-height)/2 + 15, alpha: 15, class: "basket"})
 
         basket_right_bottom = m.game.getBitmap("basket_right_bottom")
         width = basket_right_bottom.GetWidth()
         height = basket_right_bottom.GetHeight()
         region = CreateObject("roRegion", basket_right_bottom, 0, 0, width, height)
-        m.addImage("basket_right_bottom_image", region,{ offset_x:(1280-width)/2 + 125, offset_y:(720-height)/2 + 105, alpha: 15, class: "basket"})
+        m.addImage("basket_right_bottom_image", region,{ offset_x:(1280-width)/2 + 125, offset_y:(720-height)/2 + 90, alpha: 15, class: "basket"})
 
         '###    
         '### Create clone img
@@ -92,8 +92,6 @@ function obj_wolf_position(object)
         '### Create bg Rect
         bg_rect = canvas.DrawRect(0, 0, 1280, 720, &hc3c2bfFF)
     end function  
-
-
 
     object.onDrawEnd = function(canvas)
         
