@@ -22,9 +22,12 @@ sub Main()
 	
 	' ###
 	' ### load sound
-	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
-	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
-	game.loadSound("button_press_wav", "pkg:/sounds/button_press.wav")
+	game.loadSound("egg_basket_wav", "pkg:/sounds/egg_basket.wav")
+	game.loadSound("egg_chip_wav", "pkg:/sounds/egg_chip.wav")
+	game.loadSound("egg_lose_wav", "pkg:/sounds/egg_lose.wav")
+	game.loadSound("egg_move_wav", "pkg:/sounds/egg_move.wav")
+	game.loadSound("pause_off_wav", "pkg:/sounds/pause_off.wav")
+	game.loadSound("pause_on_wav", "pkg:/sounds/pause_on.wav")
 
 	' ###
 	' ### load font 

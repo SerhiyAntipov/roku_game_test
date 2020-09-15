@@ -11,9 +11,11 @@ function obj_pause_handler(object)
 				if not m.game.isPaused() then
 					m.game.Pause()
 					m.game.timer.mark()
+					m.game.playSound("pause_on_wav", 100)
 				else
 					m.game.Resume()
 					m.game.timer.mark()
+					m.game.playSound("pause_off_wav", 100)
 				end if
 		end if
 

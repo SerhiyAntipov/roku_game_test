@@ -14,6 +14,7 @@ function obj_eggs_position(object)
         ' ###
         ' ### Function add random egg 
         m.addRandomEgg = function ()
+
             m.game.random_number = RND(4)
             m.game.random_number = m.game.random_number-1
 
@@ -44,6 +45,13 @@ function obj_eggs_position(object)
         ' ### 
         ' ### Get eggs coordinates 
         m.game.createInstance("eggs_coordinates")
+
+
+
+        ' ### 
+        ' ### Variable for the sounds of the first 5 egg addition cycles
+        m.cycle = 0
+
 
         ' ###
         ' ### Render eggs 
@@ -157,7 +165,7 @@ function obj_eggs_position(object)
 
         end function
 
-        ' ###
+        ' ### Note --------------------------------
         ' ### SetTimeout
         ' m.game.speed = 1000  ' game speed
 
@@ -170,10 +178,11 @@ function obj_eggs_position(object)
         '     host.drawActiveEggs()
         ' end function))
 
-		' LoopAction(m,queue).Run()
+        ' LoopAction(m,queue).Run()
+        ' ### Note -------------------------------- 
     
         ' ###
-        ' ### option 2 - using roTimeSpan
+        ' ### Using roTimeSpan
         m.game.speed = 1500
         m.game.timer=createobject("roTimeSpan")
         m.game.timer.mark()
@@ -185,24 +194,19 @@ function obj_eggs_position(object)
             m.timerFunc(m.game.timer.TotalMilliseconds())
             m.game.timer.mark()
         end if
-
-        ' ### 
-        ' ### Rewrite game speed
-        if m.game.scores.eggs > 40 then
-            m.game.speed = 500
-        elseif m.game.scores.eggs > 30 then
-            m.game.speed = 750
-        elseif m.game.scores.eggs > 20 then
-            m.game.speed = 1000
-        elseif m.game.scores.eggs > 10 then
-            m.game.speed = 1250
-        end if    
     end function
 
     object.timerFunc = function(elapsed)
-        print "call timerFunc after: " ; elapsed
+        ' print "call timerFunc after: " ; elapsed
         m.addRandomEgg()
         m.drawActiveEggs()
+        
+        ' ### 
+        ' ### For the sounds of the first 5 egg addition cycles
+        if m.cycle < 5 then
+            m.game.playSound("egg_move_wav", 100)
+            m.cycle++
+        endif
 
         ' ### 
         ' ### Catch game event
