@@ -32,6 +32,16 @@ function obj_clock(object)
 
     object.onCreate = function(args)
         m.clock = "00:00"
+
+        ' m.timer = CreateObject("roTimespan")
+
+        ' timer = timer.Mark()
+        ' m.timerData = m.timer.TotalMilliseconds()
+        ' m.timerData = m.timer.GetSecondsToISO8601Date(str)
+        ' m.clock = m.timerData
+        ' timer.GetSecondsToISO8601Date(str)
+        ' timer = timer.ToStr()
+        ' Print timer
     end function
 
     object.onUpdate = function(dt)
@@ -40,14 +50,7 @@ function obj_clock(object)
     object.onButton = function(code as integer)
 	end function
 
-    object.onDrawBegin = function(canvas)
-        ' timer = CreateObject("roTimespan")
-        ' timer = timer.Mark()
-        ' timerData = timer.TotalMilliseconds()
-        ' timer.GetSecondsToISO8601Date(str)
-        ' timer = timer.ToStr()
-        ' Print timer
-       
+    object.onDrawBegin = function(canvas)    
         DrawText(canvas, m.clock, canvas.GetWidth()/2, 230, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
     end function  
 

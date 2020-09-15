@@ -101,41 +101,6 @@ function obj_eggs_position(object)
             end for
         end function
         m.renderEggs()
-
-
-        ' ### 
-        ' ### Track Event
-        m.gameEventTracked = function () 
-       
-            for each item in m.game.eggs_position_array.Items()
-                item_key = item.key
-                item_value = item.value
-
-                lastArrayEllement = m.game.eggs_position_array[item_key].Count()-1
-
-                if m.game.eggs_position_array[item_key][lastArrayEllement] = 1 then
-                       
-                    if item_key = "slide_left_top" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_top"] = true then
-                        print "score"
-                        m.game.postGameEvent("score", {team: 1})
-                    elseif item_key = "slide_left_bottom" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_bottom"] = true then
-                        print "score"
-                        m.game.postGameEvent("score", {team: 1})
-                    elseif item_key = "slide_right_top"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_top"] = true then
-                        print "score"
-                        m.game.postGameEvent("score", {team: 1})
-                    elseif item_key = "slide_right_bottom"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_bottom"] = true then
-                        print "score"
-                        m.game.postGameEvent("score", {team: 1})
-                    else
-                        print "lose"
-                        m.game.postGameEvent("lose", {team: 1})
-                    end if
-                    
-                end if
-
-            end for
-        end function
  
         ' ### 
         ' ### Create clon all eggs img
@@ -238,7 +203,10 @@ function obj_eggs_position(object)
         print "call timerFunc after: " ; elapsed
         m.addRandomEgg()
         m.drawActiveEggs()
-        m.gameEventTracked()
+
+        ' ### 
+        ' ### Catch game event
+        m.game.createInstance("catch_game_event")
     end function
      
     object.onButton = function(code as integer)

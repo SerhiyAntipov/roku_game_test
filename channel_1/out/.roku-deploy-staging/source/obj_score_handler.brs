@@ -11,7 +11,15 @@ function obj_score_handler(object)
         if event = "score"
             m.game.scores.eggs =  m.game.scores.eggs + 1
         elseif event = "lose"
-            m.game.scores.lose = m.game.scores.lose + 1
+            
+            if data.side = "left" then
+                m.game.scores.lose = m.game.scores.lose + 1
+                print "lose left"
+            elseif data.side = "right" then
+                m.game.scores.lose = m.game.scores.lose + 1
+                print "lose right"
+            end if
+
         end if
     end function
 

@@ -45,6 +45,7 @@ sub Main()
 	game.defineObject("eggs_position", obj_eggs_position)
 	game.defineObject("clock", obj_clock)
 	game.defineObject("libTweener", tweener)
+	game.defineObject("catch_game_event", obj_catch_game_event)
 
 	' ###
 	' ### initialize tools and controllers
