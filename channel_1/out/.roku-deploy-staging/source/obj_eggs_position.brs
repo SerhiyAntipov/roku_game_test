@@ -117,14 +117,19 @@ function obj_eggs_position(object)
                        
                     if item_key = "slide_left_top" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_top"] = true then
                         print "score"
+                        m.game.postGameEvent("score", {team: 1})
                     elseif item_key = "slide_left_bottom" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_bottom"] = true then
                         print "score"
+                        m.game.postGameEvent("score", {team: 1})
                     elseif item_key = "slide_right_top"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_top"] = true then
                         print "score"
+                        m.game.postGameEvent("score", {team: 1})
                     elseif item_key = "slide_right_bottom"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_bottom"] = true then
                         print "score"
+                        m.game.postGameEvent("score", {team: 1})
                     else
                         print "lose"
+                        m.game.postGameEvent("lose", {team: 1})
                     end if
                     
                 end if

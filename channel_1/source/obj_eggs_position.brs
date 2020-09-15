@@ -106,22 +106,7 @@ function obj_eggs_position(object)
         ' ### 
         ' ### Track Event
         m.gameEventTracked = function () 
-            
-        ' m.game.eggs_position_array = {
-        '     slide_left_top: [0, 0, 0, 0, 0, 0]
-        '     slide_left_bottom: [0, 0, 0, 0, 0, 0]
-        '     slide_right_top: [0, 0, 0, 0, 0, 0]
-        '     slide_right_bottom: [0, 0, 0, 0, 0, 0]
-        ' }
-
-        ' m.wolf_position = {
-		' 	position_left: true
-		' 	position_right: false
-		' 	position_top: false
-		' 	position_bottom: true
-        ' }
-
-
+       
             for each item in m.game.eggs_position_array.Items()
                 item_key = item.key
                 item_value = item.value
@@ -129,22 +114,22 @@ function obj_eggs_position(object)
                 lastArrayEllement = m.game.eggs_position_array[item_key].Count()-1
 
                 if m.game.eggs_position_array[item_key][lastArrayEllement] = 1 then
-                    print item_key
-                    ' print m.game.eggs_position_array[item_key][lastArrayEllement]
-                    ' print m.game.wolf_position["position_left"]
-                    ' print m.game.wolf_position["position_right"]
-                    ' print m.game.wolf_position["position_top"]
-                    ' print m.game.wolf_position["position_bottom"]
+                       
                     if item_key = "slide_left_top" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_top"] = true then
                         print "score"
+                        m.game.postGameEvent("score", {team: 1})
                     elseif item_key = "slide_left_bottom" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_bottom"] = true then
                         print "score"
+                        m.game.postGameEvent("score", {team: 1})
                     elseif item_key = "slide_right_top"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_top"] = true then
                         print "score"
+                        m.game.postGameEvent("score", {team: 1})
                     elseif item_key = "slide_right_bottom"  and m.game.wolf_position["position_right"] = true and m.game.wolf_position["position_bottom"] = true then
                         print "score"
+                        m.game.postGameEvent("score", {team: 1})
                     else
-                    print "lose"
+                        print "lose"
+                        m.game.postGameEvent("lose", {team: 1})
                     end if
                     
                 end if

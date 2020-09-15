@@ -9,9 +9,9 @@ function obj_score_handler(object)
 
     object.onGameEvent = function(event as string, data as object)
         if event = "score"
-            m.scores.eggs++
-        else if event = "lose"
-            m.scores.lose++
+            m.game.scores.eggs =  m.game.scores.eggs + 1
+        elseif event = "lose"
+            m.game.scores.lose = m.game.scores.lose + 1
         end if
     end function
 
