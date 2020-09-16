@@ -46,12 +46,10 @@ function obj_eggs_position(object)
         ' ### Get eggs coordinates 
         m.game.createInstance("eggs_coordinates")
 
-        ' ### 
+        ' ### TEST
         ' ### Parse JSON and add to num array
-        eggs_coordinates_json = ReadAsciiFile("pkg:/config/eggs_coordinates.json")
-		m.eggs_coordinates_parseJSON = ParseJSON(eggs_coordinates_json)
-	
-
+        ' eggs_coordinates_json = ReadAsciiFile("pkg:/config/eggs_coordinates.json")
+		' m.eggs_coordinates_parseJSON = ParseJSON(eggs_coordinates_json)
 
         ' ### 
         ' ### Variable for the sounds of the first 5 egg addition cycles
@@ -188,14 +186,23 @@ function obj_eggs_position(object)
         m.game.speed = 1500
         m.game.timer=createobject("roTimeSpan")
         m.game.timer.mark()
-
+        
     end function
 
     object.onUpdate = function(dt)
-        if m.game.timer.TotalMilliseconds() >= m.game.speed
-            m.timerFunc(m.game.timer.TotalMilliseconds())
-            m.game.timer.mark()
-        end if
+
+        ' ### 
+        ' ### Function starts up to 3 lost eggs 
+        ' ### If there are more than 3 lost eggs go to the "room_game_over" page
+        if m.game.scores["lose"] <= 3 then  
+            if m.game.timer.TotalMilliseconds() >= m.game.speed
+                m.timerFunc(m.game.timer.TotalMilliseconds())
+                m.game.timer.mark()
+            end if
+        else 
+            m.game.started = false
+            m.game.changeRoom("room_game_over")    
+        end if 
     end function
 
     object.timerFunc = function(elapsed)

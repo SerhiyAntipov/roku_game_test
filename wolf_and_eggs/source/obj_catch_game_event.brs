@@ -9,7 +9,7 @@ function obj_catch_game_event(object)
 			lastArrayEllement = m.game.eggs_position_array[item_key].Count()-1
 
 			if m.game.eggs_position_array[item_key][lastArrayEllement] = 1 then
-				   
+							   
 				if item_key = "slide_left_top" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_top"] = true then
 					m.game.postGameEvent("score")
 				elseif item_key = "slide_left_bottom" and m.game.wolf_position["position_left"] = true and m.game.wolf_position["position_bottom"] = true then

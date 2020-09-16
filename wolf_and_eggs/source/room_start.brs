@@ -5,8 +5,7 @@ function room_start(object)
 		'### get fonts 
 		m.game.font_WORKSHOP_Brush = m.game.getFont("font_WORKSHOP_Brush")
 
-
-		m.game_started = false
+		m.game.started = false
 		
 		'####
 		'#### create static backgroung and UI in room
@@ -28,7 +27,7 @@ function room_start(object)
 
 	' draw top layer in game  (above any static sprites)
 	object.onDrawEnd = function(canvas)
-		if m.game_started = false then
+		if m.game.started = false then
 			DrawText(canvas, "Press OK to Play", canvas.GetWidth() / 2, canvas.GetHeight() - 100, m.game.font_WORKSHOP_Brush, "center", &hec4016FF)	
 		end if
 	end function

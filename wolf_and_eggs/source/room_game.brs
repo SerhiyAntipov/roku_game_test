@@ -5,14 +5,10 @@ function room_game(object)
 		'### get fonts 
 		m.game.font_SF_Digital_Readout = m.game.getFont("font_SF_Digital_Readout") 
 			
-
-		' ### ------------------------------------------
-		m.game_started = true ' For test
-		' ### ------------------------------------------
+		m.game_started = true
 		
 		m.game.createInstance("pause_handler")
 		m.game.createInstance("score_handler")
-
 		m.game.createInstance("eggs_position")
 		m.game.createInstance("wolf_position")
 

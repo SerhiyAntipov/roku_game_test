@@ -19,7 +19,7 @@ sub Main()
 	game.loadBitmap("egg_broken", "pkg:/sprites/egg_broken.png")
 	
 	game.loadBitmap("game_bg", "pkg:/sprites/game_bg.png")
-	game.loadBitmap("loss", "pkg:/sprites/loss.png")
+	game.loadBitmap("lose", "pkg:/sprites/lose.png")
 
 	game.loadBitmap("rabbit_body", "pkg:/sprites/rabbit_body.png")
 	game.loadBitmap("rabbit_hend", "pkg:/sprites/rabbit_hend.png")
@@ -46,8 +46,9 @@ sub Main()
 	' ###
 	' ### load room
 	game.defineRoom("room_game", room_game)
+	game.defineRoom("room_game_over", room_game_over)
 	game.defineRoom("room_start", room_start)
-
+	
 	' ###
 	' ### load object
 	game.defineObject("pause_handler", obj_pause_handler)
@@ -68,6 +69,7 @@ sub Main()
 	' ### ------------------------------------------
 	' ### For test
 	' game.changeRoom("room_game") 
+	' game.changeRoom("room_game_over") 
 	' ### ------------------------------------------
 
 	' ###

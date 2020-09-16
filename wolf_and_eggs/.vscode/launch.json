@@ -21,7 +21,8 @@
                 "images/**/*.*",
                 "sprites/**/*.*",
                 "sounds/**/*.*",
-                "fonts/**/*.*"
+                "fonts/**/*.*",
+                "config/**/*.*"
             ]
         }
     ]
