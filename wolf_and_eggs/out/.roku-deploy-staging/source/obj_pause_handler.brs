@@ -12,7 +12,7 @@ function obj_pause_handler(object)
 					m.game.Pause()
 					m.game.timer.mark()
 					m.game.playSound("pause_on_wav", 100)
-				else
+				elseif m.game.isPaused() then 
 					m.game.Resume()
 					m.game.timer.mark()
 					m.game.playSound("pause_off_wav", 100)
@@ -21,7 +21,7 @@ function obj_pause_handler(object)
 
 	end function
 	
-	object.onDrawEnd = function(canvas as object)
+	object.onDrawBegin = function(canvas as object)
 		if m.game.isPaused() then
 			DrawText(canvas, "Paused", canvas.GetWidth() / 2, 200, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
 		else if not m.game.isPaused() then

@@ -25,7 +25,7 @@ function obj_egg_animated_image(object)
 			],{ 
 				index: 0, 
 				offset_x: 1280/2 + 135,
-				offset_y: 570,
+				offset_y: 670,
 				animation_speed: 1500,
 				animation_tween: "LinearTween"
 			})
@@ -53,7 +53,7 @@ function obj_egg_animated_image(object)
 			],{
 				index: 0,
 				offset_x: 1280/2 - 282,
-				offset_y: 570, 
+				offset_y: 670, 
 				animation_speed: 1500,
 				animation_tween: "LinearTween",
 			})
