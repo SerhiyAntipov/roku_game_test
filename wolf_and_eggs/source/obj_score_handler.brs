@@ -1,14 +1,13 @@
 function obj_score_handler(object)
 
     object.onCreate = function(args)
-        
-        m.game.createInstance("egg_animated_image")
 
+        m.game.createInstance("egg_animated_image")
+        
         m.game.scores = {
             eggs: 0
             lose: 0
         }
-
 
         ' ### 
         ' ### Creation egg loss image

@@ -1,9 +1,16 @@
 function obj_wolf_position(object)
 
     object.onCreate = function(args)
-        
+       
         '###
         '### Create game bg 
+        color_bg = m.game.getBitmap("color_bg")
+        width = color_bg.GetWidth()
+        height = color_bg.GetHeight()
+        region = CreateObject("roRegion", color_bg, 0, 0, width, height)
+        m.addImage("color_bg", region,{ offset_x: 0, offset_y: 0})
+
+
         game_bg = m.game.getBitmap("game_bg")
         width = game_bg.GetWidth()
         height = game_bg.GetHeight()
@@ -88,13 +95,10 @@ function obj_wolf_position(object)
     end function
 
     object.onDrawBegin = function(canvas)      
-        '###
-        '### Create bg Rect
-        bg_rect = canvas.DrawRect(0, 0, 1280, 720, &hc3c2bfFF)
     end function  
 
     object.onDrawEnd = function(canvas)
-        
+       
         '###
         '### wolf left position
         if m.game.wolf_position.position_left = true then
@@ -153,6 +157,7 @@ function obj_wolf_position(object)
                 ' DrawText(canvas, "basket bottom", canvas.GetWidth()/2, canvas.GetHeight()-100, m.game.font_SF_Digital_Readout, "center", &h2d2d2dFF)
             end if
         end if
+
     end function
 
 end function

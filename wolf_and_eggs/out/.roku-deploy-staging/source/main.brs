@@ -28,6 +28,7 @@ sub Main()
 	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
 	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
 	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
+	game.loadBitmap("color_bg", "pkg:/sprites/color_bg.png")
 
 
 	' ###
