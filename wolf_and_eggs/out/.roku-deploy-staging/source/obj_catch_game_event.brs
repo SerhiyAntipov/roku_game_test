@@ -42,7 +42,6 @@ function obj_catch_game_event(object)
 				end if	
 			end if
 		end for
-
 	end function
 
 	object.onUpdate = function(dt)		

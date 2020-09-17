@@ -1,9 +1,9 @@
 function obj_score_handler(object)
 
     object.onCreate = function(args)
-
+       
         m.game.createInstance("egg_animated_image")
-        
+
         m.game.scores = {
             eggs: 0
             lose: 0
@@ -20,15 +20,7 @@ function obj_score_handler(object)
         m.addImage("lose_02", region,{ offset_x:(1280-width)/2 + 130, offset_y:(720-height)/2 - 70, alpha: 30, class: "lose"})
     end function
 
-    object.onGameEvent = function(event as string, data as object)
-        
-        ' ### 
-        ' ### If event "lose" global variable entry "m.game.data_side"
-        if event = "lose"
-            m.game.data_side = data.side
-            print m.game.data_side
-        end if    
-
+    object.onGameEvent = function(event as string, data as object)    
         if event = "score"    
             m.game.scores.eggs =  m.game.scores.eggs + 1
             m.game.playSound("egg_basket_wav", 100)
@@ -41,6 +33,12 @@ function obj_score_handler(object)
                 m.game.playSound("egg_lose_wav", 100)
             end if   
         end if
+
+        ' ### 
+        ' ### If event "lose" global variable entry "m.game.data_side"
+        if event = "lose"
+            m.game.data_side = data.side
+        end if   
 
         ' ### 
         ' ### Rewriting game speed
@@ -69,13 +67,13 @@ function obj_score_handler(object)
         end if 
 
         ' ### 
-        ' ### Mini pause after egg loss
+        ' ### Mini pause after egg lose
         if event = "lose" then
             m.game.speed += 1000
         end if 
 
         ' ### 
-        ' ### Drawing egg loss image
+        ' ### Drawing egg lose image
         if m.game.scores["lose"] = 1 then
             m.images[0]["alpha"] = 255
         else if m.game.scores["lose"] = 2 then

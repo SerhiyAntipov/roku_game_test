@@ -2,9 +2,6 @@ function obj_eggs_position(object)
 
     object.onCreate = function(args)  
 
-        ' m.game.createInstance("egg_animated_image")
-
-
         ' ###   
         ' ### Create array eggs position
         m.game.eggs_position_array = {
@@ -48,7 +45,7 @@ function obj_eggs_position(object)
         ' ### 
         ' ### Get eggs coordinates 
         m.game.createInstance("eggs_coordinates")
-
+        
         ' ### TEST
         ' ### Parse JSON and add to num array
         ' eggs_position_link_json = "pkg:/config/eggs_coordinates.json"
@@ -212,7 +209,7 @@ function obj_eggs_position(object)
         ' print "call timerFunc after: " ; elapsed
         m.addRandomEgg()
         m.drawActiveEggs()
-        
+       
         ' ### 
         ' ### For the sounds of the first 5 egg addition cycles
         if m.cycle < 5 then

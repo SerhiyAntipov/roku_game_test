@@ -15,6 +15,10 @@ sub Main()
 	game.loadBitmap("chick_left_01", "pkg:/sprites/chick_left_01.png")
 	game.loadBitmap("chick_right_02", "pkg:/sprites/chick_right_02.png")
 	game.loadBitmap("chick_left_02", "pkg:/sprites/chick_left_02.png")
+	game.loadBitmap("chick_right_03", "pkg:/sprites/chick_right_03.png")
+	game.loadBitmap("chick_left_03", "pkg:/sprites/chick_left_03.png")
+	game.loadBitmap("chick_right_04", "pkg:/sprites/chick_right_04.png")
+	game.loadBitmap("chick_left_04", "pkg:/sprites/chick_left_04.png")
 	game.loadBitmap("egg", "pkg:/sprites/egg.png")
 	game.loadBitmap("egg_broken_right", "pkg:/sprites/egg_broken_right.png")
 	game.loadBitmap("egg_broken_left", "pkg:/sprites/egg_broken_left.png")
@@ -72,7 +76,7 @@ sub Main()
 	game.changeRoom("room_start")
 	' ### ------------------------------------------
 	' ### For test
-	game.changeRoom("room_game") 
+	' game.changeRoom("room_game") 
 	' game.changeRoom("room_game_over") 
 	' ### ------------------------------------------
 
