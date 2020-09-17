@@ -8,9 +8,10 @@ function room_game(object)
 		m.game_started = true
 		
 		m.game.createInstance("pause_handler")
-		m.game.createInstance("score_handler")
 		m.game.createInstance("eggs_position")
+		m.game.createInstance("score_handler")
 		m.game.createInstance("wolf_position")
+		
 
 	end function
 

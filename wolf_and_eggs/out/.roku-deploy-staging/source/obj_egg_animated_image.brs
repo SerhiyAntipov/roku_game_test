@@ -2,6 +2,13 @@ function obj_egg_animated_image(object)
 
 	object.onCreate = function(args)
 	
+		' if m.game.data_side = "left" then
+           
+        ' elseif m.game.data_side = "right" 
+            
+        ' end if    
+
+
 		' ###
 		' ### Add animated image right
 		egg_broken_right = m.game.getBitmap("egg_broken_right")
@@ -14,14 +21,12 @@ function obj_egg_animated_image(object)
 		egg_broken_region_3 = CreateObject("roRegion", chick_right_02, 0, 0, chick_right_02.GetWidth(), chick_right_02.GetHeight())
 		egg_broken_region_4 = CreateObject("roRegion", chick_right_02, 0, 0, chick_right_02.GetWidth(), chick_right_02.GetHeight())
 
-
 		m.game.animatedImage_right_egg = m.addAnimatedImage("animated_right_egg_image", [egg_broken_region_0, egg_broken_region_1, egg_broken_region_2, egg_broken_region_3, egg_broken_region_4], { 
 				offset_x: 100,
 				offset_y: 350,
 				animation_speed: 1500,
 				animation_tween: "LinearTween",
 			})
-
 
 		' ###
 		' ### Add animated image left
@@ -42,6 +47,9 @@ function obj_egg_animated_image(object)
 				animation_speed: 1500,
 				animation_tween: "LinearTween",
 			})
+	end function
+	
+	object.onUpdate = function(dt)
 	end function
 
 	object.onButton = function(code as integer)

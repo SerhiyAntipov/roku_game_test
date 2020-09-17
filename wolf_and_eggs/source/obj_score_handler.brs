@@ -1,11 +1,14 @@
 function obj_score_handler(object)
 
     object.onCreate = function(args)
+        
+        m.game.createInstance("egg_animated_image")
 
         m.game.scores = {
             eggs: 0
             lose: 0
         }
+
 
         ' ### 
         ' ### Creation egg loss image
@@ -20,7 +23,12 @@ function obj_score_handler(object)
 
     object.onGameEvent = function(event as string, data as object)
         
-        print event
+        ' ### 
+        ' ### If event "lose" global variable entry "m.game.data_side"
+        if event = "lose"
+            m.game.data_side = data.side
+            print m.game.data_side
+        end if    
 
         if event = "score"    
             m.game.scores.eggs =  m.game.scores.eggs + 1

@@ -2,7 +2,7 @@ function obj_eggs_position(object)
 
     object.onCreate = function(args)  
 
-        m.game.createInstance("egg_animated_image")
+        ' m.game.createInstance("egg_animated_image")
 
 
         ' ###   
