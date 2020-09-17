@@ -2,6 +2,9 @@ function obj_eggs_position(object)
 
     object.onCreate = function(args)  
 
+        m.game.createInstance("egg_animated_image")
+
+
         ' ###   
         ' ### Create array eggs position
         m.game.eggs_position_array = {
@@ -48,8 +51,8 @@ function obj_eggs_position(object)
 
         ' ### TEST
         ' ### Parse JSON and add to num array
-        ' eggs_coordinates_json = ReadAsciiFile("pkg:/config/eggs_coordinates.json")
-		' m.eggs_coordinates_parseJSON = ParseJSON(eggs_coordinates_json)
+        ' eggs_position_link_json = "pkg:/config/eggs_coordinates.json"
+		' m.eggs_position_parseJSON = ParseJSON(ReadAsciiFile(eggs_position_link_json))
 
         ' ### 
         ' ### Variable for the sounds of the first 5 egg addition cycles

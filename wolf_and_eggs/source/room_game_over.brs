@@ -3,6 +3,8 @@ function room_game_over(object)
 	object.onCreate = function(args)	
 		m.game.started = false
 
+		m.game.playSound("game_over_wav", 100)
+
 		m.game.font_WORKSHOP_Brush = m.game.getFont("font_WORKSHOP_Brush")
 
 		room_game_over_bg = m.game.getBitmap("room_start_bg")

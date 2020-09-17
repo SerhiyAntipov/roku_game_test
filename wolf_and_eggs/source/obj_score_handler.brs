@@ -20,6 +20,8 @@ function obj_score_handler(object)
 
     object.onGameEvent = function(event as string, data as object)
         
+        print event
+
         if event = "score"    
             m.game.scores.eggs =  m.game.scores.eggs + 1
             m.game.playSound("egg_basket_wav", 100)

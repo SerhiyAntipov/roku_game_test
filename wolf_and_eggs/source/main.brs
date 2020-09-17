@@ -11,23 +11,24 @@ sub Main()
 	game.loadBitmap("basket_left_top", "pkg:/sprites/basket_left_top.png")
 	game.loadBitmap("basket_right_bottom", "pkg:/sprites/basket_right_bottom.png")
 	game.loadBitmap("basket_right_top", "pkg:/sprites/basket_right_top.png")
-
-	game.loadBitmap("chick_01", "pkg:/sprites/chick_01.png")
-	game.loadBitmap("chick_02", "pkg:/sprites/chick_02.png")
-
+	game.loadBitmap("chick_right_01", "pkg:/sprites/chick_right_01.png")
+	game.loadBitmap("chick_left_01", "pkg:/sprites/chick_left_01.png")
+	game.loadBitmap("chick_right_02", "pkg:/sprites/chick_right_02.png")
+	game.loadBitmap("chick_left_02", "pkg:/sprites/chick_left_02.png")
 	game.loadBitmap("egg", "pkg:/sprites/egg.png")
-	game.loadBitmap("egg_broken", "pkg:/sprites/egg_broken.png")
-	
+	game.loadBitmap("egg_broken_right", "pkg:/sprites/egg_broken_right.png")
+	game.loadBitmap("egg_broken_left", "pkg:/sprites/egg_broken_left.png")
 	game.loadBitmap("game_bg", "pkg:/sprites/game_bg.png")
 	game.loadBitmap("lose", "pkg:/sprites/lose.png")
-
 	game.loadBitmap("rabbit_body", "pkg:/sprites/rabbit_body.png")
 	game.loadBitmap("rabbit_hend", "pkg:/sprites/rabbit_hend.png")
-
 	game.loadBitmap("wolf_left", "pkg:/sprites/wolf_left.png")
 	game.loadBitmap("wolf_right", "pkg:/sprites/wolf_right.png")
-	
 	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
+	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
+	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
+	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
+
 
 	' ###
 	' ### load sound
@@ -37,6 +38,7 @@ sub Main()
 	game.loadSound("egg_move_wav", "pkg:/sounds/egg_move.wav")
 	game.loadSound("pause_off_wav", "pkg:/sounds/pause_off.wav")
 	game.loadSound("pause_on_wav", "pkg:/sounds/pause_on.wav")
+	game.loadSound("game_over_wav", "pkg:/sounds/game_over.wav")
 
 	' ###
 	' ### load font 
@@ -58,6 +60,7 @@ sub Main()
 	game.defineObject("eggs_position", obj_eggs_position)
 	game.defineObject("libTweener", tweener)
 	game.defineObject("catch_game_event", obj_catch_game_event)
+	game.defineObject("egg_animated_image", obj_egg_animated_image)
 
 	' ###
 	' ### initialize tools and controllers
@@ -68,7 +71,7 @@ sub Main()
 	game.changeRoom("room_start")
 	' ### ------------------------------------------
 	' ### For test
-	' game.changeRoom("room_game") 
+	game.changeRoom("room_game") 
 	' game.changeRoom("room_game_over") 
 	' ### ------------------------------------------
 
