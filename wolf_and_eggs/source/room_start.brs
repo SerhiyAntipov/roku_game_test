@@ -4,9 +4,7 @@ function room_start(object)
 		'### 
 		'### get fonts 
 		m.game.font_WORKSHOP_Brush = m.game.getFont("font_WORKSHOP_Brush")
-
-		m.game.started = false
-		
+	
 		'####
 		'#### create static backgroung and UI in room
 		room_start_bg = m.game.getBitmap("room_start_bg")
@@ -27,20 +25,14 @@ function room_start(object)
 
 	' draw top layer in game  (above any static sprites)
 	object.onDrawEnd = function(canvas)
-		if m.game.started = false then
-			DrawText(canvas, "Press OK to Play", canvas.GetWidth() / 2, canvas.GetHeight() - 100, m.game.font_WORKSHOP_Brush, "center", &hec4016FF)	
-		end if
+		DrawText(canvas, "Press OK to Play", canvas.GetWidth() / 2, canvas.GetHeight() - 100, m.game.font_WORKSHOP_Brush, "center", &hec4016FF)	
 	end function
 
 	' ####
 	' ####  button click "OK" "<-"
 	object.onButton = function(code as integer)
-		if code = 0 then
-			m.game.End()
-		end if
 		if code = 6 then
 			m.game.changeRoom("room_game")
-			m.game_started = true
 		end if
 	end function
 

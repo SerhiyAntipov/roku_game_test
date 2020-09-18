@@ -23,11 +23,12 @@ function obj_egg_animated_image(object)
 			egg_broken_region_3,
 			egg_broken_region_4
 			],{ 
-				index: 0, 
 				offset_x: 1280/2 + 135,
-				offset_y: 670,
+				offset_y: 470, 
 				animation_speed: 1500,
-				animation_tween: "LinearTween"
+				animation_tween: "LinearTween",
+				alpha: 255,
+				' enabled: false,
 			})
 
 		' ###
@@ -51,11 +52,12 @@ function obj_egg_animated_image(object)
 			egg_broken_region_3, 
 			egg_broken_region_4 
 			],{
-				index: 0,
 				offset_x: 1280/2 - 282,
-				offset_y: 670, 
+				offset_y: 470, 
 				animation_speed: 1500,
 				animation_tween: "LinearTween",
+				alpha: 255,
+				' enabled: false,
 			})
 	end function
 	

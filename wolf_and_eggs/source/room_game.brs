@@ -5,14 +5,12 @@ function room_game(object)
 		'### 
 		'### Get fonts 
 		m.game.font_SF_Digital_Readout = m.game.getFont("font_SF_Digital_Readout") 
-			
-		m.game_started = true
-		
+					
 		m.game.createInstance("pause_handler")
 		m.game.createInstance("eggs_position")
 		m.game.createInstance("score_handler")
+		' m.game.createInstance("egg_animated_image")
 		m.game.createInstance("wolf_position")
-
 	end function
 
 	object.onUpdate = function(dt)		
@@ -25,12 +23,10 @@ function room_game(object)
 	end function
 	
 	'###
-	'###  click button "<-"" 
-	object.onButton = function(button)
-		if button = 0 then
-			m.game_started = false
-			m.game.End()
+	'###  Click button "<-"" 
+	object.onButton = function(code as integer)
+		if code = 0 then
+			m.game.changeRoom("room_start")
 		end if
 	end function
-
 end function
