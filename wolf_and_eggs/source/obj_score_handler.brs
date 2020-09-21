@@ -60,7 +60,7 @@ function obj_score_handler(object)
                 
                 ' ###
                 ' ### Add animated image left
-                m.game.animatedImage_left_egg = m.addAnimatedImage("animated_left_egg_image", [
+                m.game.animatedImage_left_egg = m.addAnimatedImage("animatedImage_left_egg", [
                     m.game.egg_broken_region_0l,
                     m.game.egg_broken_region_1l, 
                     m.game.egg_broken_region_2l, 
@@ -84,7 +84,7 @@ function obj_score_handler(object)
                 
                 ' ###
                 ' ### Add animated image right
-                m.game.animatedImage_right_egg = m.addAnimatedImage("animated_right_egg_image", [
+                m.game.animatedImage_right_egg = m.addAnimatedImage("animatedImage_right_egg", [
                     m.game.egg_broken_region_0r,
                     m.game.egg_broken_region_1r, 
                     m.game.egg_broken_region_2r, 
@@ -162,34 +162,21 @@ function obj_score_handler(object)
     object.onUpdate = function(dt)
         animatedImageSpeed = 1500 - 20
         if m.game.animatedImageTimer <> invalid and m.game.animatedImageTimer.TotalMilliseconds() >= animatedImageSpeed then          
-            if m.game.animatedImage_left_egg <> invalid then
-                m.game.animatedImageSide = "animated_side_left"
-                m.deleteAnimatedImage(m.game.animatedImageSide)
-            elseif m.game.animatedImage_right_egg <> invalid then
-                m.game.animatedImageSide = "animated_side_right"
-                m.deleteAnimatedImage(m.game.animatedImageSide)
-            end if
-
+            m.deleteAnimatedImage(m.game.data_side)
+            
             ' ### 
             ' ### Delete timer 
             m.game.delete("animatedImageTimer")     
         end if
 	end function
 
-
+    ' ### 
+    ' ### Delete Animated Image
     object.deleteAnimatedImage = function(side)   
-        ' ### 
-        ' ### Delete Animated Image
-
-        if side = "animated_side_left" then
-            print side
-            m.game.animatedImage_left_egg["alpha"] = 0 'only for test, alpha channel change
-            m.game.delete("animatedImage_left_egg")
-            
-        elseif side = "animated_side_right"  then
-            print side 
-            m.game.animatedImage_right_egg["alpha"] = 0 'only for test, alpha channel change
-            m.game.delete("animatedImage_right_egg")
+        if side = "left" then
+            m.removeImage("animatedImage_left_egg")
+        elseif side = "right"  then
+            m.removeImage("animatedImage_right_egg")
         end if
     end function
 
@@ -198,8 +185,7 @@ function obj_score_handler(object)
         font = m.game.font_SF_Digital_Readout
     
         DrawText(canvas, "Score" + "  " + m.game.scores.eggs.ToStr(), 1280 - 400, 200, font, "right", &h2d2d2dFF)
-        ' DrawText(canvas, "Lose " + "  " + m.game.scores.lose.ToStr(), 1280 - 400, 230, font, "right", &h2d2d2dFF)
-        
+        ' DrawText(canvas, "Lose " + "  " + m.game.scores.lose.ToStr(), 1280 - 400, 230, font, "right", &h2d2d2dFF)   
     end function
 
 end function
