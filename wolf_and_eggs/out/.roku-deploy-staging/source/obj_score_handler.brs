@@ -163,7 +163,7 @@ function obj_score_handler(object)
         animatedImageSpeed = 1500 - 20
         if m.game.animatedImageTimer <> invalid and m.game.animatedImageTimer.TotalMilliseconds() >= animatedImageSpeed then          
             m.deleteAnimatedImage(m.game.data_side)
-
+            
             ' ### 
             ' ### Delete timer 
             m.game.delete("animatedImageTimer")     
@@ -185,8 +185,7 @@ function obj_score_handler(object)
         font = m.game.font_SF_Digital_Readout
     
         DrawText(canvas, "Score" + "  " + m.game.scores.eggs.ToStr(), 1280 - 400, 200, font, "right", &h2d2d2dFF)
-        ' DrawText(canvas, "Lose " + "  " + m.game.scores.lose.ToStr(), 1280 - 400, 230, font, "right", &h2d2d2dFF)
-        
+        ' DrawText(canvas, "Lose " + "  " + m.game.scores.lose.ToStr(), 1280 - 400, 230, font, "right", &h2d2d2dFF)   
     end function
 
 end function

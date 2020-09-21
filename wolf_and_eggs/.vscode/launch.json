@@ -9,8 +9,8 @@
             "request": "launch",
             "name": "BrightScript Debug: Launch",
             "stopOnEntry": false,
-            "host": "192.168.21.137",
-            "password": "ipmatrix",
+            "host": "192.168.1.107",
+            "password": "0000",
             "rootDir": "${workspaceFolder}",
             "enableDebuggerAutoRecovery": false,
             "stopDebuggerOnAppExit": false,
@@ -25,5 +25,3 @@
                 "config/**/*.*"
             ]
         }
-    ]
-}
