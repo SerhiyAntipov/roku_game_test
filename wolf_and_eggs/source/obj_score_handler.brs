@@ -163,11 +163,10 @@ function obj_score_handler(object)
         animatedImageSpeed = 1500 - 20
         if m.game.animatedImageTimer <> invalid and m.game.animatedImageTimer.TotalMilliseconds() >= animatedImageSpeed then          
             if m.game.animatedImage_left_egg <> invalid then
-                m.game.animatedImageSide = "animated_side_left"
-                m.deleteAnimatedImage(m.game.animatedImageSide)
-            elseif m.game.animatedImage_right_egg <> invalid then
-                m.game.animatedImageSide = "animated_side_right"
-                m.deleteAnimatedImage(m.game.animatedImageSide)
+                m.deleteAnimatedImage("animated_side_left")
+            end if
+            if m.game.animatedImage_right_egg <> invalid then
+                m.deleteAnimatedImage("animated_side_right")
             end if
 
             ' ### 
@@ -180,16 +179,14 @@ function obj_score_handler(object)
     object.deleteAnimatedImage = function(side)   
         ' ### 
         ' ### Delete Animated Image
+        print side
 
-        if side = "animated_side_left" then
-            print side
+        if side = "animated_side_left" then    
             m.game.animatedImage_left_egg["alpha"] = 0 'only for test, alpha channel change
-            m.game.delete("animatedImage_left_egg")
-            
+            m.removeImage("animated_left_egg_image")
         elseif side = "animated_side_right"  then
-            print side 
             m.game.animatedImage_right_egg["alpha"] = 0 'only for test, alpha channel change
-            m.game.delete("animatedImage_right_egg")
+            m.removeImage("animated_right_egg_image")
         end if
     end function
 
