@@ -200,7 +200,7 @@ function obj_eggs_position(object)
                 m.game.timer.mark()
             end if
         else 
-            m.game.started = false
+            m.game.started = false        
             m.game.changeRoom("room_game_over")    
         end if 
     end function

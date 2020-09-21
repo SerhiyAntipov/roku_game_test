@@ -49,13 +49,7 @@ function obj_score_handler(object)
     end function
 
     object.onGameEvent = function(event as string, data as object)    
-        
-        if m.game.animatedImage_left_egg <> invalid then
-            ' m.game.Delete("animatedImage_left_egg")
-        elseif m.game.animatedImage_right_egg <> invalid then
-            ' m.game.Delete("animatedImage_right_egg")
-        end if
-
+    
         if event = "score"    
             m.game.scores.eggs =  m.game.scores.eggs + 1
             m.game.playSound("egg_basket_wav", 100)
@@ -107,10 +101,14 @@ function obj_score_handler(object)
                         loopAnimation: false,
                         LoopAction: false
                     })
-               
-            end if   
-        end if
+            end if  
 
+            ' ###
+            ' ### Delete animated image 
+            m.game.animatedImageTimer=createobject("roTimeSpan")
+            m.game.animatedImageTimer.mark()
+        end if
+ 
         ' ### 
         ' ### If event "lose" global variable entry "m.game.data_side"
         if event = "lose"
@@ -161,8 +159,39 @@ function obj_score_handler(object)
 
     end function
 
-    object.onUpdate = function(dt)	
+    object.onUpdate = function(dt)
+        animatedImageSpeed = 1500 - 20
+        if m.game.animatedImageTimer <> invalid and m.game.animatedImageTimer.TotalMilliseconds() >= animatedImageSpeed then          
+            if m.game.animatedImage_left_egg <> invalid then
+                m.game.animatedImageSide = "animated_side_left"
+                m.deleteAnimatedImage(m.game.animatedImageSide)
+            elseif m.game.animatedImage_right_egg <> invalid then
+                m.game.animatedImageSide = "animated_side_right"
+                m.deleteAnimatedImage(m.game.animatedImageSide)
+            end if
+
+            ' ### 
+            ' ### Delete timer 
+            m.game.delete("animatedImageTimer")     
+        end if
 	end function
+
+
+    object.deleteAnimatedImage = function(side)   
+        ' ### 
+        ' ### Delete Animated Image
+
+        if side = "animated_side_left" then
+            print side
+            m.game.animatedImage_left_egg["alpha"] = 0
+            m.game.delete("animatedImage_left_egg")
+            
+        elseif side = "animated_side_right"  then
+            print side 
+            m.game.animatedImage_right_egg["alpha"] = 0
+            m.game.delete("animatedImage_right_egg")
+        end if
+    end function
 
     object.onDrawEnd = function(canvas as object)
 

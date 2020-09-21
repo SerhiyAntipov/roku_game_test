@@ -76,7 +76,7 @@ sub Main()
 	game.changeRoom("room_start")
 	' ### ------------------------------------------
 	' ### For test
-	' game.changeRoom("room_game") 
+	game.changeRoom("room_game") 
 	' game.changeRoom("room_game_over") 
 	' ### ------------------------------------------
 
