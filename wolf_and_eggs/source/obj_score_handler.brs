@@ -183,12 +183,12 @@ function obj_score_handler(object)
 
         if side = "animated_side_left" then
             print side
-            m.game.animatedImage_left_egg["alpha"] = 0
+            m.game.animatedImage_left_egg["alpha"] = 0 'only for test, alpha channel change
             m.game.delete("animatedImage_left_egg")
             
         elseif side = "animated_side_right"  then
             print side 
-            m.game.animatedImage_right_egg["alpha"] = 0
+            m.game.animatedImage_right_egg["alpha"] = 0 'only for test, alpha channel change
             m.game.delete("animatedImage_right_egg")
         end if
     end function
