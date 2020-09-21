@@ -1,6 +1,9 @@
 function room_game_over(object)
 
 	object.onCreate = function(args)	
+
+		' m.game.destroyInstance("pause_handler")	
+
 		m.game.started = false
 
 		m.game.playSound("game_over_wav", 100)
