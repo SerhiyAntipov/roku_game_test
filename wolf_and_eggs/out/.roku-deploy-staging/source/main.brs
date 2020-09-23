@@ -34,7 +34,6 @@ sub Main()
 	game.loadBitmap("room_start_bg", "pkg:/sprites/wolf_start.png")
 	game.loadBitmap("color_bg", "pkg:/sprites/color_bg.png")
 
-
 	' ###
 	' ### load sound
 	game.loadSound("egg_basket_wav", "pkg:/sounds/egg_basket.wav")
@@ -76,8 +75,8 @@ sub Main()
 	game.changeRoom("room_start")
 	' ### ------------------------------------------
 	' ### For test
-	' game.changeRoom("room_game") 
-	' game.changeRoom("room_game_over") 
+	game.changeRoom("room_game") 
+	game.changeRoom("room_game_over") 
 	' ### ------------------------------------------
 
 	' ###

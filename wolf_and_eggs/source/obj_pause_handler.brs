@@ -1,7 +1,7 @@
 function obj_pause_handler(object)
 
 	object.onCreate = function(args)
-		m.persistent = true
+		' m.persistent = true
 		m.pauseable = false
 	end function
 

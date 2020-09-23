@@ -1,6 +1,7 @@
 function room_start(object)
 
 	object.onCreate = function(args)
+	
 		'### 
 		'### get fonts 
 		m.game.font_WORKSHOP_Brush = m.game.getFont("font_WORKSHOP_Brush")
@@ -29,7 +30,7 @@ function room_start(object)
 	end function
 
 	' ####
-	' ####  button click "OK" "<-"
+	' ####  button click "OK"
 	object.onButton = function(code as integer)
 		if code = 6 then
 			m.game.changeRoom("room_game")
