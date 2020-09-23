@@ -44,12 +44,9 @@ function obj_eggs_position(object)
 
         ' ### 
         ' ### Get eggs coordinates 
-        m.game.createInstance("eggs_coordinates")
-        
-        ' ### TEST
         ' ### Parse JSON and add to num array
-        ' eggs_position_link_json = "pkg:/config/eggs_coordinates.json"
-		' m.eggs_position_parseJSON = ParseJSON(ReadAsciiFile(eggs_position_link_json))
+        eggs_position_link_json = "pkg:/config/eggs_coordinates.json"
+		m.game.eggs_position_img = ParseJSON(ReadAsciiFile(eggs_position_link_json))
 
         ' ### 
         ' ### Variable for the sounds of the first 5 egg addition cycles
