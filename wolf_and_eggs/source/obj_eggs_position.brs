@@ -2,6 +2,7 @@ function obj_eggs_position(object)
 
     object.onCreate = function(args)  
 
+        
         ' ###   
         ' ### Create array eggs position
         m.game.eggs_position_array = {
